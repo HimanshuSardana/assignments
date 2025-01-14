@@ -1,0 +1,4 @@
+1. A = [-2, -5, 6, -2, -3, 1, 5, -6], Find subarray that has max sum
+2. A = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91], Binary Search to find 23
+3. A = [12, 11, 13, 5, 6, 7] // Merge sort
+4. A = [4, 2, 6, 9, 2] // Quick Sort
