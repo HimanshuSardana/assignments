@@ -1,9 +1,8 @@
-# 8 Puzzle Game
-initial = [[1,2,3], [8,0,4], [7,6,5]]
-final = [[2,8,1], [0,4,3], [7,6,5]]
-
 import heapq
 from copy import deepcopy
+
+initial = [[1,2,3], [8,0,4], [7,6,5]]
+final = [[2,8,1], [0,4,3], [7,6,5]]
 
 def find_blank(state):
     for i in range(len(state)):
