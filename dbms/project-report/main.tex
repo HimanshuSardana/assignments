@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+\title{\textbf{DBMS Project Report}}
+\maketitle
+\pagebreak
+
+\tikzset{
+    ENTITY/.style={draw, rectangle, minimum width=2cm, minimum height=1cm}
+}
+
+\tikzset{
+        ATTRIBUTE/.style={draw, circle, minimum size=3mm}
+}
+
+\tableofcontents
+\pagebreak
+
+\section{Introduction}
+In today's fast-paced world, quick commerce (q-commerce) apps like Blinkit and Zepto have revolutionized the way consumers access everyday essentials. Unlike traditional e-commerce, which often requires longer delivery times, q-commerce focuses on ultra-fast deliveries, typically within 10 to 30 minutes. These apps utilize a network of strategically located dark stores and advanced logistics algorithms to ensure efficient order fulfillment. The growing demand for instant delivery services has made q-commerce a crucial part of modern urban life, reshaping consumer expectations and business models.\newline
+
+\noindent
+This project aims to analyze the database management system (DBMS) behind q-commerce apps, exploring how they handle vast amounts of real-time data to optimize inventory, deliveries, and user experience. By designing a database schema tailored for a q-commerce platform, the project will illustrate how structured data storage, indexing, and queries contribute to seamless operations. Additionally, it will focus on key components such as order tracking, customer data management, inventory updates, and rider allocation, all of which require efficient database management for smooth execution.\newline
+
+\noindent
+Through this project, we will develop a working model of a q-commerce DBMS, simulating how orders are processed, deliveries are assigned, and stock levels are updated dynamically. The system will demonstrate how relational databases, along with indexing and caching techniques, can enhance the performance and scalability of such applications. By studying the real-world implementation of q-commerce apps, this project will provide valuable insights into the role of database management in ensuring speed, reliability, and efficiency in the instant delivery industry.
+
+\noindent
+\subsection{Objective}
+The objective of this project is to design a database schema for a q-commerce platform that can efficiently manage orders, customers, products, and riders. The database should support real-time data processing, order tracking, inventory management, and rider allocation to ensure fast and reliable delivery services. By implementing a robust DBMS tailored for q-commerce, the project aims to showcase the importance of structured data storage, indexing, and query optimization in optimizing operations and enhancing user experience.
+
+\subsection{Scope}
+The scope of this project includes the following key features of a q-commerce platform:
+\begin{itemize}
+    \item Order Management: Processing, tracking, and updating the status of orders in real-time.
+    \item Customer Data Management: Storing and managing customer information, preferences, and order history.
+    \item Product Inventory: Tracking stock levels, prices, and categories of products available for sale.
+    \item Rider Allocation: Assigning delivery tasks to riders based on availability, location, and order details.
+\end{itemize}
+
+\subsection{Assumptions}
+The following assumptions are made for the purpose of this project:
+\begin{itemize}
+    \item The q-commerce platform operates in a single city or region with a limited number of dark stores and delivery zones.
+    \item The platform focuses on delivering essential items such as groceries, household goods, and personal care products.
+    \item Customers can place orders through a mobile app or website, with options for express delivery within 30 minutes.
+    \item Riders are independent contractors who use their own vehicles for deliveries and are paid per order completed.
+\end{itemize}
+
+\pagebreak
+
+\section{ER Diagram}
+\begin{tikzpicture}
+        % NODES
+        \node[ENTITY] (orders) {Orders};
+        \node[ENTITY, below=of orders] (drivers) {Drivers};
+        \node[ENTITY, below=of drivers] (customers) {Customers};
+        \node[ENTITY, below=of customers] (items) {Items};
+
+        % ATTRIBUTES
+        \node[ATTRIBUTE, left=of orders] (order_id) {\small{Order ID}};
+
+        % ARROWS
+        \draw[->, very thick] (orders) -- (drivers) node[midway, right] {\tiny{Assigned to}};
+\end{tikzpicture}
+\pagebreak
+
+\section{Information of Entities}
+\subsection{Orders}
+\begin{itemize}
+    \item \textbf{Order ID:} Unique identifier for each order.
+    \item \textbf{Customer ID:} Unique identifier for each customer.
+    \item \textbf{Order Date:} Date and time when the order was placed.
+    \item \textbf{Delivery Address:} Address where the order is to be delivered.
+    \item \textbf{Order Status:} Current status of the order (e.g., pending, confirmed, dispatched, delivered).
+    \item \textbf{Total Amount:} Total cost of the order.
+    \item \textbf{Payment Status:} Payment status of the order (e.g., pending, paid, refunded).
+\end{itemize}
+
+\subsection{Customers}
+\begin{itemize}
+    \item \textbf{Customer ID:} Unique identifier for each customer.
+    \item \textbf{Name:} Name of the customer.
+    \item \textbf{Email:} Email address of the customer.
+    \item \textbf{Phone Number:} Contact number of the customer.
+    \item \textbf{Address:} Address of the customer.
+    \item \textbf{Payment Method:} Preferred payment method of the customer (e.g., credit card, debit card, UPI).
+\end{itemize}
+
+\subsection{Products}
+\begin{itemize}
+    \item \textbf{Product ID:} Unique identifier for each product.
+    \item \textbf{Name:} Name of the product.
+    \item \textbf{Category:} Category to which the product belongs (e.g., groceries, household items, personal care).
+    \item \textbf{Price:} Price of the product.
+    \item \textbf{Stock:} Current stock level of the product.
+\end{itemize}
+
+\subsection{Riders}
+\begin{itemize}
+    \item \textbf{Rider ID:} Unique identifier for each rider.
+    \item \textbf{Name:} Name of the rider.
+    \item \textbf{Phone Number:} Contact number of the rider.
+    \item \textbf{Current Location:} Current location of the rider.
+    \item \textbf{Availability:} Availability status of the rider (e.g., available, busy).
+\end{itemize}
+
+
+\end{document}
