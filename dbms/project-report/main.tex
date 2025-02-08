@@ -14,7 +14,7 @@
 }
 
 \tikzset{
-        ATTRIBUTE/.style={draw, circle, minimum size=3mm}
+        ATTRIBUTE/.style={draw, ellipse, minimum size=3mm}
 }
 
 \tableofcontents
@@ -56,16 +56,40 @@ The following assumptions are made for the purpose of this project:
 \section{ER Diagram}
 \begin{tikzpicture}
         % NODES
-        \node[ENTITY] (orders) {Orders};
-        \node[ENTITY, below=of orders] (drivers) {Drivers};
-        \node[ENTITY, below=of drivers] (customers) {Customers};
-        \node[ENTITY, below=of customers] (items) {Items};
+        \node[ENTITY] (customers) [xshift=5cm] {Customers};
+        \node[ENTITY] (orders) [below = 6cm of customers] {Orders};
+        \node[ENTITY] (products) [right=6cm of orders] {Products};
+        \node[ENTITY] (riders) [below=6cm of products, xshift=-5cm] {Riders};
 
         % ATTRIBUTES
-        \node[ATTRIBUTE, left=of orders] (order_id) {\small{Order ID}};
+        \node[ATTRIBUTE] (order_id) [above left=of orders] {\tiny{Order ID}};
+        \node[ATTRIBUTE] (customer_id) [above=of orders] {\tiny{Customer ID}};
+        \node[ATTRIBUTE] (order_date) [above right=of orders] {\tiny{Order Date}};
+        \node[ATTRIBUTE] (delivery_address) [below left=of orders] {\tiny{Delivery Address}};
+        \node[ATTRIBUTE] (order_status) [below=of orders] {\tiny{Order Status}};
+        \node[ATTRIBUTE] (total_amount) [below right=of orders] {\tiny{Total Amount}};
+
+        \node[ATTRIBUTE] (customer_id) [above left=of customers] {\tiny{Customer ID}};
+        \node[ATTRIBUTE] (name) [below right=of customers] {\tiny{Name}};
+        \node[ATTRIBUTE] (email) [above=of customers] {\tiny{Email}};
+        \node[ATTRIBUTE] (phone_number) [above right=of customers] {\tiny{Phone Number}};
+        \node[ATTRIBUTE] (address) [below left=of customers] {\tiny{Address}};
+        \node[ATTRIBUTE] (payment_method) [below=of customers] {\tiny{Payment Method}};
+
+        \node[ATTRIBUTE] (product_id) [above left=of products] {\tiny{Product ID}};
+        \node[ATTRIBUTE] (name) [above=of products] {\tiny{Name}};
+        \node[ATTRIBUTE] (category) [above right=of products] {\tiny{Category}};
+        \node[ATTRIBUTE] (price) [below left=of products] {\tiny{Price}};
+        \node[ATTRIBUTE] (stock) [below=of products] {\tiny{Stock}};
+
+        \node[ATTRIBUTE] (rider_id) [above left=of riders] {\tiny{Rider ID}};
+        \node[ATTRIBUTE] (name) [above=of riders] {\tiny{Name}};
+        \node[ATTRIBUTE] (phone_number) [above right=of riders] {\tiny{Phone Number}};
+        \node[ATTRIBUTE] (current_location) [below left=of riders] {\tiny{Current Location}};
+        \node[ATTRIBUTE] (availability) [below=of riders] {\tiny{Availability}};
+
 
         % ARROWS
-        \draw[->, very thick] (orders) -- (drivers) node[midway, right] {\tiny{Assigned to}};
 \end{tikzpicture}
 \pagebreak
 
