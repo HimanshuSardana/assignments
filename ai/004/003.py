@@ -67,7 +67,6 @@ def print_matrix(matrix):
     print()
 
 def a_star(matrix):
-    """A* pathfinding algorithm for solving the 8-puzzle."""
     moves = [move_up, move_down, move_left, move_right]
     open_set = [(h_score(matrix), 0, matrix, [])]
     visited = set()

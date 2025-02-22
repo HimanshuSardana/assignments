@@ -3,35 +3,12 @@
 using namespace std;
 
 int main() {
-        string s1 = "GeeksForGeeks";
-        string s2 = "GeeksQuiz";
+        string s1 = "AGGTAB";
+        string s2 = "GXTXAYB";
 
-        int chars_matched = 0;
-        vector<int> idxs;
-        int freq = 0;
+        string lcs = "";
 
-        for(int i = 0; i < s1.size(); i++) {
+        int n = s1.size();
+        int m = s2.size();
 
-        }
 }
-
-/*
-* |     |       |   Q   |       |
-* --------------------------------
-* |  Q  |       |       |       |
-* --------------------------------
-* |     |      |        |   Q   |
-* --------------------------------
-* |     |   Q   |       |       |
-*/
-
-/*
-* |     |   Q   |       |       |
-* --------------------------------
-* |     |       |       |   Q   |
-* --------------------------------
-* |  Q  |      |        |       |
-* --------------------------------
-* |     |       |   Q   |       |
-*/
-
