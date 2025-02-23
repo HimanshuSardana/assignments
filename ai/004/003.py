@@ -7,7 +7,7 @@ def h_score(state):
     score = 0
     for i in range(3):
         for j in range(3):
-            if state[i][j] != final[i][j]:
+            if state[i][j] == final[i][j]:
                 score += 1
     return score
 
@@ -72,7 +72,7 @@ def a_star(matrix):
     visited = set()
     
     while open_set:
-        open_set.sort()  # Sort list to simulate priority queue behavior
+        open_set.sort(reverse=True) 
         _, cost, current, path = open_set.pop(0)
         
         if is_goal(current):
