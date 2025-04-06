@@ -1,6 +1,3 @@
-import random
-
-# Given data
 items = [
     {"name": "A", "weight": 45, "value": 3},
     {"name": "B", "weight": 40, "value": 5},

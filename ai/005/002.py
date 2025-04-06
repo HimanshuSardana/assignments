@@ -11,19 +11,21 @@ max_weight = 9
 population = ["1111", "1000", "1010", "1001"]
 
 def fitness(chromosome):
-    total_weight = sum(items[i]["weight"] for i in range(4) if chromosome[i] == "1")
-    total_value = sum(items[i]["value"] for i in range(4) if chromosome[i] == "1")
+    total_weight = total_value = 0
+    for i, bit in enumerate(chromosome):
+        if bit == "1":
+            total_weight += items[i]["weight"]
+            total_value += items[i]["value"]
     return total_value if total_weight <= max_weight else 0
 
 def crossover(parent1, parent2):
-    point = 2
-    child1 = parent1[:point] + parent2[point:]
-    child2 = parent2[:point] + parent1[point:]
-    return child1, child2
+    point = len(parent1) // 2 
+    return parent1[:point] + parent2[point:], parent2[:point] + parent1[point:]
 
-def mutate(chromosome, index):
+def mutate(chromosome, iteration):
+    idx = mutation_order[iteration % len(mutation_order)]
     chromosome = list(chromosome)
-    chromosome[index] = "0" if chromosome[index] == "1" else "1"
+    chromosome[idx] = "0" if chromosome[idx] == "1" else "1"
     return "".join(chromosome)
 
 mutation_order = [2, 0, 3, 1]
