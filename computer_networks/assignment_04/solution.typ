@@ -80,8 +80,63 @@ The GNS (G) simulation environment is a powerful tool designed to facilitate the
   Create a network of 2 PCs as shown below.
   #image("q3.png")
 ]
+#solution()[
+  #align(center)[
+    #image("q4p1.png", height: 100pt)
+  ]
+
+  *Ping Results* (from `192.168.1.1`)
+  #zebraw(numbering: false)[
+  ```txt
+  C:>ping 192.168.1.2
+
+  Pinging 192.168.1.2 with 32 bytes of data:
+
+  Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+
+  Ping statistics for 192.168.1.2:
+  Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+  Approximate round trip times in milli-seconds:
+  Minimum = 0ms, Maximum = 0ms, Average = 0ms
+  ```]
+
+]
 
 #question()[
   Connect 2 PCs with a Switch below.
   #image("q4.png")
 ]
+
+#solution()[
+  #align(center)[
+    #image("q5.png", height: 100pt)
+  ]
+
+  *Simulation Results*
+  #image("q5p1.png")
+
+  *Ping Results* (from `192.168.1.1`)
+  #zebraw(numbering: false)[
+  ```txt
+Query successful
+
+C:>ping 192.168.1.2
+
+Pinging 192.168.1.2 with 32 bytes of data:
+
+Reply from 192.168.1.2: bytes=32 time=1ms TTL=128
+Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+Reply from 192.168.1.2: bytes=32 time=1ms TTL=128
+
+Ping statistics for 192.168.1.2:
+Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum = 0ms, Maximum = 1ms, Average = 0ms
+  ```]
+
+]
+
