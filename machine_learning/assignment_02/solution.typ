@@ -1,6 +1,9 @@
 #import "temp2.typ": *
 #import "@preview/tablem:0.3.0": tablem, three-line-table
 
+#show raw: set text(font: "Iosevka NF")
+
+#title("Assignment 2")
 == Dataset Link: #link("https://www.kaggle.com/jahias/microsoft-adventure-works-cycles-customer-data ", [#text(fill: blue, size: 12pt)[#underline("Microsoft Adventure Works Cycles Customer data")]])
 #v(5mm)
 #question("Part 1", [

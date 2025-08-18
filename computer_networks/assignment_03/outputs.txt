@@ -1,26 +1,5 @@
-#import "@preview/zebraw:0.5.5": *
-#show: zebraw
+ipconfig
 
-#import "./temp2.typ": *
-#title("Assignment 3")
-
-#question()[
-  #align(center)[
-    #table(columns: 5, inset: 8pt)[hostname][ipconfig][getmac][ping][arp][nbstate][route][path][pathping][netstat][tracert]
-  ]
-  Practice the commands mentioned in the above table and fill in the blanks. 
-]
-
-#smallcaps()[*Solution*]
-#table(columns: (1fr, 3fr))[*Command*][*Working*][ping][Command is one of the most often used networking utilities for detecting devices on a network and for troubleshooting network problems.][hostname][command that displays the hostname of your machine][ipconfig][frequently used utility that is used for finding network information about your local machine like ip addresses, dns addresses etc.][nbstat][diagnostic tool for troubleshooting netbios problems][netstat][used for displaying information about tcp and udp connections and ports.][getmac][command that shows the mac address of your network interfaces][arp][for showing the address resolution cache. this command must be used with a
-command line switch -a is the most common.][tracert][command prints the path. if all routers on the path are functional, this command
-prints the full path.][path][command specifies the location where ms-dos should look when it executes a
-command.][route][command allows you to make manual entries into the network routing tables.][pathping][after sending out packets from you to a given destination, it analyzes the route
-taken and computes packet loss on a per-hop basis.]
-
-== Outputs
-`ipconfig `
-```txt
 Windows IP Configuration
 
 
@@ -46,25 +25,21 @@ Wireless LAN adapter Wi-Fi 2:
 
    Media State . . . . . . . . . . . : Media disconnected
    Connection-specific DNS Suffix  . :
-```
 
-`ping`
-```txt
+
+ping
 Pinging google.com [172.217.26.14] with 32 bytes of data:
 Reply from 172.217.26.14: bytes=32 time=10ms TTL=117
 Reply from 172.217.26.14: bytes=32 time=10ms TTL=117
 
 Ping statistics for 172.217.26.14:
     Packets: Sent = 2, Received = 2, Lost = 0 (0% loss),
-```
 
-`hostname`
-```txt
+hostname
 DESKTOP-IDSI54N
-```
 
-`netstat`
-```txt
+
+netstat
 Active Connections
 
   Proto  Local Address          Foreign Address        State
@@ -79,10 +54,10 @@ Active Connections
   TCP    127.0.0.1:59419        DESKTOP-IDSI54N:59005  TIME_WAIT
   TCP    127.0.0.1:59436        DESKTOP-IDSI54N:59005  ESTABLISHED
   TCP    172.16.119.58:58959    a23-208-178-166:https  ESTABLISHED
-```
 
-`getmac`
-```txt
+
+
+getmac
 Physical Address    Transport Name
 =================== ==========================================================
 D8-9C-67-6F-4E-1F   Media disconnected
@@ -111,36 +86,10 @@ Interface: 172.16.119.58 --- 0x9
   224.0.0.252           01-00-5e-00-00-fc     static
   239.255.250.250       01-00-5e-7f-fa-fa     static
   239.255.255.250       01-00-5e-7f-ff-fa     static
-```
 
-`arp -a`
-```txt
-Interface: 172.16.119.58 --- 0x9
-  Internet Address      Physical Address      Type
-  172.16.119.1          74-8e-f8-90-80-78     dynamic
-  172.16.119.21         f4-39-09-22-9e-68     dynamic
-  172.16.119.27         f4-39-09-22-9d-b8     dynamic
-  172.16.119.54         f4-39-09-22-9f-2a     dynamic
-  172.16.119.88         f4-39-09-22-9d-c9     dynamic
-  172.16.119.89         f4-39-09-22-9f-15     dynamic
-  172.16.119.90         f4-39-09-22-9e-08     dynamic
-  172.16.119.91         f4-39-09-22-9d-ac     dynamic
-  172.16.119.95         f4-39-09-22-9d-8e     dynamic
-  172.16.119.96         f4-39-09-22-9e-73     dynamic
-  172.16.119.101        f4-39-09-22-9d-ab     dynamic
-  172.16.119.102        f4-39-09-22-9d-cf     dynamic
-  172.16.119.105        f4-39-09-22-9d-d9     dynamic
-  172.16.119.255        ff-ff-ff-ff-ff-ff     static
-  224.0.0.2             01-00-5e-00-00-02     static
-  224.0.0.22            01-00-5e-00-00-16     static
-  224.0.0.251           01-00-5e-00-00-fb     static
-  224.0.0.252           01-00-5e-00-00-fc     static
-  239.255.250.250       01-00-5e-7f-fa-fa     static
-  239.255.255.250       01-00-5e-7f-ff-fa     static
-```
 
-`tracert -h 5 google.com`
-```txt
+
+tracert -h 5 google.com
 Tracing route to google.com [142.251.221.238]
 over a maximum of 5 hops:
 
@@ -151,15 +100,14 @@ over a maximum of 5 hops:
   5     4 ms     4 ms     4 ms  202.164.51.36
 
 Trace complete.
-```
 
-`path`
-```txt
+
+
+path
 PATH=C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\dotnet\;C:\Users\CSED\AppData\Local\Microsoft\WindowsApps;
-```
 
-`routeprint`
-```txt
+
+route print
 ===========================================================================
 Interface List
   9...f4 39 09 22 9e a7 ......Intel(R) Ethernet Connection (7) I219-LM #2
@@ -203,4 +151,22 @@ Active Routes:
 ===========================================================================
 Persistent Routes:
   None
-```
+
+pathping -h 5 google.com
+Tracing route to google.com [142.250.77.238]
+over a maximum of 5 hops:
+  0  DESKTOP-IDSI54N [172.16.119.58]
+  1  172.16.119.1
+  2  172.31.1.6
+  3  static.ill.117.203.246.42.bsnl.in [117.203.246.42]
+  4     *        *        *
+Computing statistics for 75 seconds...
+            Source to Here   This Node/Link
+Hop  RTT    Lost/Sent = Pct  Lost/Sent = Pct  Address
+  0                                           DESKTOP-IDSI54N [172.16.119.58]
+                                0/ 100 =  0%   |
+  1    7ms     9/ 100 =  9%     9/ 100 =  9%  172.16.119.1
+                                0/ 100 =  0%   |
+  2    0ms     0/ 100 =  0%     0/ 100 =  0%  172.31.1.6
+                                0/ 100 =  0%   |
+  3    1ms     0/ 100 =  0%     0/ 100 =  0%  static.ill.117.203.246.42.bsnl.in [117.203.246.42]
