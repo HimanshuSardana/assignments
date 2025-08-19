@@ -130,8 +130,8 @@ import matplotlib.pyplot as plt
 
 img = cv2.imread("gray_image.jpg")
 
-gamma = 1.4
-c = 0.3
+gamma = 0.3
+c = 1.0
 
 norm_img = img / 255
 
@@ -140,6 +140,32 @@ plt.imshow(power_log_img)
 ```
 === #smallcaps()[Output]
 ```txt
-<matplotlib.image.AxesImage at 0x7fd38e3dcb10><Figure size 640x480 with 1 Axes>
+<matplotlib.image.AxesImage at 0x7fd38e87d790><Figure size 640x480 with 1 Axes>
 ```
 #align(center)[#image("images/cell_2.png", width: 80%)]
+#question("5",[Contrast Stretching Transformation])
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread("img1.jpg").astype(np.float32)
+
+r1, r2 = 80, 120
+s1, s2 = 50, 150
+
+mask = (img >= r1) & (img <= r2)
+
+img[mask] = ((img[mask] - 1) / (r2 - r1)) * (s2 - s1) + s1
+img = np.clip(img, 0, 255).astype(np.float32)
+plt.imshow(img)
+```
+=== #smallcaps()[Output]
+```txt
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [0.0..255.0].
+<matplotlib.image.AxesImage at 0x7fd38e089c90><Figure size 640x480 with 1 Axes>
+```
+#align(center)[#image("images/cell_3.png", width: 80%)]
+```python
+
+```
