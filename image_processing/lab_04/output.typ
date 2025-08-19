@@ -24,7 +24,7 @@
     #v(1mm)
   ]
 ]
-        #question("1",[Negative Image transformation])
+        #question("1",[Apply the negative image transformation])
 ```python
 import cv2
 import numpy as np
@@ -33,17 +33,19 @@ import matplotlib.pyplot as plt
 img = cv2.imread("gray_image.jpg")
 
 # Apply negative transformation
-negative_img = img - np.max(img)
+negative_img = np.max(img) - img
 print(np.max(img))
 
 cv2.imwrite("negative.jpg", negative_img)
+plt.imshow(negative_img)
 ```
 === #smallcaps()[Output]
 ```txt
 255
-True
+<matplotlib.image.AxesImage at 0x7f6b80433bd0><Figure size 640x480 with 1 Axes>
 ```
-#question("2",[Log image transformation])
+#align(center)[#image("images/cell_1.png", width: 80%)]
+#question("2",[Apply the logarithmic image transformation])
 ```python
 import cv2
 import numpy as np
@@ -57,72 +59,47 @@ c = 255 / np.log(1 + np.max(img))
 log_img = np.uint8(c * np.log1p(img))
 
 cv2.imwrite("log_img.jpg", log_img)
+plt.imshow(log_img)
 ```
 === #smallcaps()[Output]
 ```txt
-True
+<matplotlib.image.AxesImage at 0x7f6b805ba210><Figure size 640x480 with 1 Axes>
 ```
+#align(center)[#image("images/cell_2.png", width: 80%)]
 #question("3",[Make a custom 3x3 image and repeatedly apply the log transform])
 ```python
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+
 new_img = (np.random.rand(3, 3) * 255).astype(np.uint8)
-plt.imshow(new_img)
+
+
+fig, axes = plt.subplots(1, 11, figsize=(2.2*(11), 4))
+
+axes[0].imshow(new_img)
+axes[0].set_title("Original")
+axes[0].axis("off")
 
 for i in range(10):
     c = 255 / np.log(1 + float(np.max(new_img)))
     log_img = np.uint8(c * np.log1p(new_img))
 
-    print(log_img)
+    axes[i+1].imshow(log_img)
+    axes[i+1].set_title(f"Transformation {i+1}")
+    axes[i+1].axis("off")
 
-    cv2.imwrite(f"{i}.jpg", log_img)
-    print(f"Wrote image {i}.jpg")
     new_img = log_img
+
+plt.tight_layout()
+plt.show()
 ```
 === #smallcaps()[Output]
 ```txt
-[[224 241 218]
- [206 193 148]
- [255 242 214]]
-Wrote image 0.jpg
-[[249 252 247]
- [245 242 230]
- [255 252 246]]
-Wrote image 1.jpg
-[[253 254 253]
- [253 252 250]
- [255 254 253]]
-Wrote image 2.jpg
-[[254 254 254]
- [254 254 254]
- [255 254 254]]
-Wrote image 3.jpg
-[[254 254 254]
- [254 254 254]
- [255 254 254]]
-Wrote image 4.jpg
-[[254 254 254]
- [254 254 254]
- [255 254 254]]
-Wrote image 5.jpg
-[[254 254 254]
- [254 254 254]
- [255 254 254]]
-Wrote image 6.jpg
-[[254 254 254]
- [254 254 254]
- [255 254 254]]
-Wrote image 7.jpg
-[[254 254 254]
- [254 254 254]
- [255 254 254]]
-Wrote image 8.jpg
-[[254 254 254]
- [254 254 254]
- [255 254 254]]
-Wrote image 9.jpg
-<Figure size 640x480 with 1 Axes>
+<Figure size 2420x400 with 11 Axes>
 ```
-#align(center)[#image("images/cell_1.png", width: 80%)]
-#question("3",[Power Log (Gamma Correction) image transformation])
+#align(center)[#image("images/cell_3.png", width: 80%)]
+#question("3",[Apply the Power Law (Gamma Correction) image transformation])
 ```python
 import cv2
 import numpy as np
@@ -140,10 +117,10 @@ plt.imshow(power_log_img)
 ```
 === #smallcaps()[Output]
 ```txt
-<matplotlib.image.AxesImage at 0x7fd38e87d790><Figure size 640x480 with 1 Axes>
+<matplotlib.image.AxesImage at 0x7f6b84534590><Figure size 640x480 with 1 Axes>
 ```
-#align(center)[#image("images/cell_2.png", width: 80%)]
-#question("5",[Contrast Stretching Transformation])
+#align(center)[#image("images/cell_4.png", width: 80%)]
+#question("5",[Apply the Contrast Stretching Transformation])
 ```python
 import cv2
 import numpy as np
@@ -152,7 +129,7 @@ import matplotlib.pyplot as plt
 img = cv2.imread("img1.jpg").astype(np.float32)
 
 r1, r2 = 80, 120
-s1, s2 = 50, 150
+s1, s2 = 0, 100
 
 mask = (img >= r1) & (img <= r2)
 
@@ -163,9 +140,9 @@ plt.imshow(img)
 === #smallcaps()[Output]
 ```txt
 Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [0.0..255.0].
-<matplotlib.image.AxesImage at 0x7fd38e089c90><Figure size 640x480 with 1 Axes>
+<matplotlib.image.AxesImage at 0x7f6b803269d0><Figure size 640x480 with 1 Axes>
 ```
-#align(center)[#image("images/cell_3.png", width: 80%)]
+#align(center)[#image("images/cell_5.png", width: 80%)]
 ```python
 
 ```
