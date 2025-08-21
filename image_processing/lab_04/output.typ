@@ -1,49 +1,61 @@
 #import "@preview/showybox:2.0.4": showybox
+#show raw: set text(font: "Iosevka NF")
 
-#let question(number, body) = context [
-  #showybox(
-    frame: (
-      border-color: blue,
-      title-color: blue,
-      body-color: white,
-    ),
-    title-style: (
-      color: white,
-      weight: "bold",
-      align: left,
-      boxed-style: (
-        radius: 4pt,
-      ),
-    ),
-    title: [
-      #smallcaps()[#text(size: 10pt, weight: "bold")[
-          == Question #number
-        ]]
-    ],
-  )[#body
-    #v(1mm)
+#let title(content) = [
+  #box(width: 100%, fill: teal.lighten(80%), inset: 10pt)[
+    #align(center + horizon)[
+      #text(font: "Montserrat", weight: "bold", size: 12pt, fill: teal)[#content]
+    ]
   ]
 ]
-        #question("1",[Apply the negative image transformation])
-```python
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
 
-img = cv2.imread("gray_image.jpg")
+#let question(number, body) = context [
+  #box(inset: 12pt, radius: 5pt, width: 100%, fill: teal.lighten(80%))[
+    #text(font: "Montserrat", weight: "extrabold", size: 9pt, fill: teal)[Question #number] \
+    #text(font: "Montserrat", size: 10pt)[#body]
+  ]
+]
 
-# Apply negative transformation
-negative_img = np.max(img) - img
-print(np.max(img))
+#let solution(content) = [
+  #box(inset: 12pt, radius: 5pt, width: 100%, stroke: (thickness: 1.3pt, dash: "dashed", paint: teal))[
+    #text(font: "Montserrat", weight: "bold", size: 9pt, fill: teal)[Solution] \
+    #v(-2mm)
+    #text(font: "Montserrat", size: 10pt)[#content]
+  ]
+]
 
-cv2.imwrite("negative.jpg", negative_img)
-plt.imshow(negative_img)
-```
-=== #smallcaps()[Output]
-```txt
-255
-<matplotlib.image.AxesImage at 0x7f6b80433bd0><Figure size 640x480 with 1 Axes>
-```
+#let output(content) = [
+  #box(inset: 5pt, radius: 5pt, width: 100%)[
+    #text(font: "Montserrat", weight: "bold", size: 9pt, fill: teal)[Output] \
+    #v(-2mm)
+    #text(font: "Montserrat", size: 10pt)[#content]
+  ]
+]
+
+
+#question("1",[Apply the negative image transformation])
+#solution()[
+  ```python
+  import cv2
+  import numpy as np
+  import matplotlib.pyplot as plt
+
+  img = cv2.imread("gray_image.jpg")
+
+  # Apply negative transformation
+  negative_img = np.max(img) - img
+  print(np.max(img))
+
+  cv2.imwrite("negative.jpg", negative_img)
+  plt.imshow(negative_img)
+  ```
+]
+#output()[
+  ```txt
+  255
+  <matplotlib.image.AxesImage at 0x7f6b80433bd0><Figure size 640x480 with 1 Axes>
+  ```
+]
 #align(center)[#image("images/cell_1.png", width: 80%)]
 #question("2",[Apply the logarithmic image transformation])
 ```python
