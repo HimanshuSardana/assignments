@@ -87,13 +87,7 @@
 ]
 
 #let solution(sol, output: "") = [
-  #grid(columns: (2fr, 1fr))[
     #smallcaps()[*Solution*] \
     #v(-2mm)
     #text()[#sol]
-  ][
-    #smallcaps()[*Output*] \
-    #v(-2mm)
-    #text()[#output]
   ]
-]

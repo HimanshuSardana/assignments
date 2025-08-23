@@ -3,65 +3,45 @@
 #import "temp2.typ": *
 #set par(justify: true)
 
-#title("Assignment 1: Requirement Elicitation")
+#title("Assignment 1")
 
-= #text(fill: blue)[Food Delivery System]
-#v(2mm)
-#box(stroke: (thickness: 1pt, paint: blue, dash: "dashed"),  radius: 4pt)[
-  #align(left)[
-    #box(fill: blue.lighten(70%), width: 100%, inset: 10pt, stroke: (thickness: 1pt, paint: blue, dash: "dashed"), radius: 4pt)[
-      == #text(fill: black, size: 12pt)[Functional Requirements]
-    ]
-  ]
-  #v(-4mm)
-  #box(inset: 10pt)[
-    === Customers
-    + The system should allow customers to place orders for food from various restaurants.
-    + The system should provide a menu for each restaurant.
-    + The system should allow customers to customize their orders (e.g., add/remove items, specify preferences).
-    + The system should allow customers to track the status of their orders.
-
-    === Kitchen Staff
-    + The system should allow kitchen staff to view incoming orders.
-    + The system should allow kitchen staff to update the status of orders (e.g., preparing, ready for delivery).
-    + The system should allow kitchen staff to manage the menu items (add, update, remove).
-    + The system should allow kitchen staff to view order history.
-
-    === Restaurant Owners
-    + The system should allow restaurant owners to manage their restaurant profiles.
-    + The system should allow restaurant owners to view sales reports and analytics.
-    + The system should allow restaurant owners to manage their menu items and prices.
-    + The system should allow restaurant owners to respond to customer feedback.
-
-    === Delivery Personnel
-    + The system should allow delivery personnel to view assigned orders.
-    + The system should allow delivery personnel to update the status of orders (e.g., out for delivery, delivered).
-  ]
+#question("Question")[
+  Perform Requirement Elicitation for a Food Delivery System.
+  #set enum(numbering: "(a)")
+  + List the stakeholders involved.
+  + List the functional and non-functional requirements.
 ]
 
-#block(stroke: (thickness: 1pt, paint: blue, dash: "dashed"),  radius: 4pt)[
-  #align(left)[
-    #block(fill: blue.lighten(70%), width: 100%, inset: 10pt, stroke: (thickness: 1pt, paint: blue, dash: "dashed"), radius: 4pt)[
-      == #text(fill: black, size: 12pt)[Non-Functional Requirements]
-    ]
-  ]
-  #v(-4mm)
-  #block(inset: 10pt)[
-    === Performance
-    + The system should handle a lot of simultaneous users without performance degradation.
-    + The system should process orders within a few seconds on average.
+#solution()[
+  #set enum(numbering: "(a)")
+  + *Stakeholders:*
+    - Customers
+    - Restaurant Owners
+    - Kitchen Staff
+    - Delivery Personnel
 
-    === Usability
-    + The system should have an intuitive user interface for customers, restaurants, and delivery personnel.
-    + The system should provide help and support features for users.
-
-    === Security
-    + The system should ensure secure transactions and protect user data.
-    + The system should implement authentication and authorization mechanisms for different user roles (customers, restaurants, delivery personnel).
-
-    === Scalability
-    + The system should be able to scale horizontally to accommodate an increasing number of users and orders.
-    + The system should support adding new restaurants and delivery personnel without significant downtime.
-  ]
+  + *Functional Requirements:*
+    + *Customers:*
+      - Browse restaurants
+      - Place orders
+      - Track order status
+      - Make payments
+    + *Restaurant Owners:*
+      - Manage menu items
+      - View orders
+      - Update order status
+    + *Kitchen Staff:*
+      - Receive orders
+      - Prepare food
+      - Update order status
+    + *Delivery Personnel:*
+      - Receive delivery requests
+      - Track delivery status
+      - Update delivery status
+  + *Non-Functional Requirements:*
+    - *Performance*: System should handle 1000 concurrent users.
+    - *Security*: User data must be encrypted.
+    - *Usability*: User interface should be intuitive and easy to navigate.
+    - *Availability*: System should be available 99.9% of the time.
+    - *Scalability*: System should be able to scale to handle increased load during peak times.
 ]
-
