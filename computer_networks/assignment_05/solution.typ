@@ -73,7 +73,6 @@
       #align(center)[
         Invalid question \
         Loop nhi bnta \
-        *FUCK YOU*
       ]
     ]
   ]
