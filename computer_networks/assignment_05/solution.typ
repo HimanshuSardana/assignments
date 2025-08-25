@@ -21,10 +21,8 @@
     #image("a1a.png", width: 70%) 
   ]
 
-  #smallcaps()[Ping Results]
+  *Ping Results* (from 192.168.1.1)
       ```txt
-      Query successful
-
       C:>ping 192.168.1.2
       Pinging 192.168.1.2 with 32 bytes of data:
 
@@ -43,7 +41,7 @@
     #image("a1b.png", width: 70%) 
   ]
 
-  #smallcaps()[Ping Results]
+  *Ping Results* (from 192.168.1.1)
   ```txt
   C:\>ping 192.168.1.4
 
@@ -88,6 +86,22 @@
   #align(center)[
     #image("a3.png", width: 70%)
   ]
+
+  *Ping Results* (from 192.168.1.1)
+  ```txt
+    Pinging 192.168.1.3
+    Pinging 192.168.1.3 with 32 bytes of data:
+
+    Reply from 192.168.1.3: bytes=32 time<1ms TTL=128
+    Reply from 192.168.1.3: bytes=32 time<1ms TTL=128
+    Reply from 192.168.1.3: bytes=32 time<1ms TTL=128
+    Reply from 192.168.1.3: bytes=32 time<1ms TTL=128
+
+    Ping statistics for 192.168.1.3:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+    Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+  ```
 ]
 
 #question()[
@@ -102,5 +116,21 @@
   #align(center)[
     #image("a4.png", width: 70%)
   ]
+
+  *Ping Results* (from 192.168.1.1)
+  ```txt
+  Pinging 192.168.1.7
+  Pinging 192.168.1.7 with 32 bytes of data:
+
+  Reply from 192.168.1.7: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.7: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.7: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.7: bytes=32 time<1ms TTL=128
+
+  Ping statistics for 192.168.1.7:
+  Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+  Approximate round trip times in milli-seconds:
+  Minimum = 0ms, Maximum = 0ms, Average = 0ms
+  ```
 ]
 
