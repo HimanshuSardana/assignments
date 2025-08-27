@@ -34,7 +34,6 @@ for idx, i in enumerate(td):
             row["Weather"] = None
     elif idx % 4 == 3:
         row["Temperature"] = i.text.strip()
-        # completed row → append to rows
         rows.append(row)
 
 data = pd.DataFrame(rows)

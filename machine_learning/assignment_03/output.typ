@@ -1,25 +1,29 @@
 #import "@preview/showybox:2.0.4": showybox
 
+#let link(body) = [
+  #underline()[
+    #text(fill: blue)[#body]
+  ]
+]
 #let title(body) = [
   #box(
     width: 100%,
     inset: 10pt,
     radius: 4pt,
-    fill: olive,
-    stroke: 1pt + olive,
+    fill: blue,
+    stroke: 1pt + blue,
   )[
     #align(center + horizon)[
       #smallcaps()[#text(font: "Montserrat", size: 10pt, weight: "bold", fill: white)[= #body]]
     ]
   ]
 ]
-
 #let question(qno, body) = [
   #showybox(
     frame: (
-      border-color: olive,
-      title-color: olive,
-      body-color: olive.lighten(90%),
+      border-color: blue,
+      title-color: blue,
+      body-color: blue.lighten(90%),
     ),
     title-style: (
       color: white,
@@ -41,18 +45,16 @@
     #v(1mm)
   ]
 ]
-
 #let solution(content) = [
-  #block(inset: 12pt, radius: 5pt, width: 100%, stroke: (thickness: 1.3pt, dash: "dashed", paint: olive), fill: olive.lighten(90%))[
-    #text( weight: "bold", size: 9pt, fill: olive, font: "Montserrat")[#smallcaps()[Solution]] \
+  #block(inset: 12pt, radius: 5pt, width: 100%, stroke: (thickness: 1.3pt, dash: "dashed", paint: blue))[
+    #text( weight: "bold", size: 9pt, fill: blue, font: "Montserrat")[#smallcaps()[Solution]] \
     #v(-2mm)
     #text( size: 10pt)[#content]
   ]
 ]
-
 #let output(content) = [
   #block(inset: 5pt, radius: 5pt, width: 100%)[
-    #text( weight: "bold", size: 9pt, fill: olive, font: "Montserrat")[#smallcaps()[Output]] \
+    #text( weight: "bold", size: 9pt, fill: blue, font: "Montserrat")[#smallcaps()[Output]] \
     #v(-2mm)
     #text(size: 10pt)[#content]
   ]
@@ -60,7 +62,7 @@
 
 #title("Assignment 4")
 #question("1",[
-  Write a Python program to scrape all available books from the website (https://books.toscrape.com/) Books to Scrape – a live site built for practicing scraping (safe, legal, no anti-bot). For each book, extract the following details: 
+  Write a Python program to scrape all available books from the website (#link()[https://books.toscrape.com/]) Books to Scrape – a live site built for practicing scraping (safe, legal, no anti-bot). For each book, extract the following details: 
   + Title
   + Price
   + Availability (in stock/out of stock)
@@ -68,12 +70,12 @@
 
   Store the scraped results into a Pandas DataFrame and export them to a CSV file named `books.csv`. 
 ])
-
 #solution()[```python
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
+books = []
 for i in range(1, 51):
     URL = f"https://books.toscrape.com/catalogue/page-{str(i)}.html"
 
@@ -86,8 +88,6 @@ for i in range(1, 51):
     price = soup.find_all("p", class_="price_color")
     availability = soup.find_all("p", class_="instock availability")
 
-
-    books = []
     for title, price, availability in zip(book_titles, price, availability):
         book = {
             "title": title.find("a")["title"],
@@ -99,7 +99,7 @@ for i in range(1, 51):
 
 df = pd.DataFrame(books)
 df.to_csv("books.csv", index=False)
-
+print(df)
 ```]
 #output()[```txt
 Page 1 scraped successfully.
@@ -152,16 +152,31 @@ Page 47 scraped successfully.
 Page 48 scraped successfully.
 Page 49 scraped successfully.
 Page 50 scraped successfully.
+
+                                                 title    price availability
+0                                 A Light in the Attic   £51.77     In stock
+1                                   Tipping the Velvet   £53.74     In stock
+2                                           Soumission   £50.10     In stock
+3                                        Sharp Objects   £47.82     In stock
+4                Sapiens: A Brief History of Humankind   £54.23     In stock
+..                                                 ...      ...          ...
+995  Alice in Wonderland (Alice's Adventures in Won...   £55.53     In stock
+996   Ajin: Demi-Human, Volume 1 (Ajin: Demi-Human #1)   £57.06     In stock
+997  A Spy's Devotion (The Regency Spies of London #1)   £16.97     In stock
+998                1st to Die (Women's Murder Club #1)   £53.98     In stock
+999                 1,000 Places to See Before You Die   £26.08     In stock
+
+[1000 rows x 3 columns]
 ```
 ]
+
 #question("2",[
-  Write a Python program to scrape the IMDB Top 250 Movies list (https://www.imdb.com/chart/top/) . For each movie, extract the following details:
+  Write a Python program to scrape the IMDB Top 250 Movies list (#link()[https://www.imdb.com/chart/top/]) . For each movie, extract the following details:
   + Rank (1–250) 
   + Movie Title 
   + Year of Release 
   + IMDB Rating 
 ])
-
 #solution()[```python
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -199,7 +214,7 @@ print(data)
 data.to_csv("imdb_top_movies.csv", index=False)
 ```]
 #output()[```txt
-   Rank                                              Title  Year Rating
+    Rank                                              Title  Year Rating
 0      1                           The Shawshank Redemption  1994    9.3
 1      2                                      The Godfather  1972    9.2
 2      3                                    The Dark Knight  2008    9.1
@@ -215,14 +230,14 @@ data.to_csv("imdb_top_movies.csv", index=False)
 [250 rows x 4 columns]
 ```
 ]
+
 #question("3",[
-  Write a Python program to scrape the weather information for top world cities from the given website (https://www.timeanddate.com/weather/) . For each city, extract the following details: 
+  Write a Python program to scrape the weather information for top world cities from the given website (#link()[https://www.timeanddate.com/weather/]) . For each city, extract the following details: 
   1. City Name 
   2. Temperature 
   3. Weather Condition (e.g., Clear, Cloudy, Rainy, etc.) 
   Store the results in a Pandas DataFrame and export it to a CSV file named `weather.csv`.
 ])
-#v(5mm)
 #solution()[```python
 import requests
 from bs4 import BeautifulSoup
@@ -277,7 +292,7 @@ data.to_csv("weather.csv", index=False)
 
 ```]
 #output()[```txt
-City Local Time                  Weather Temperature
+             City Local Time                  Weather Temperature
 0           Accra      09.09          Overcast. Mild.       24 °C
 1    Kuala Lumpur      17.09     Passing clouds. Hot.       33 °C
 2     Addis Ababa      12.09               Fog. Cool.       15 °C

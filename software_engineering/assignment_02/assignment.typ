@@ -56,7 +56,9 @@
         ], bend: 25deg),
 
         node((3, 2), shape: "rect", stroke: 0.5pt, inset: 8pt)[
-          *Manager*
+          #smallcaps()[
+            *Manager*
+          ]
         ]
       )
     ]
@@ -209,11 +211,6 @@
             Bill
           ]
       ], bend: 25deg),
-
-
-
-
     )
   ]
-
 ]
