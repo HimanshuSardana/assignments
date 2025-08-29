@@ -1,11 +1,11 @@
 #set page(flipped: true)
 #set page(margin: (y: 10pt, x: 10pt))
-#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 #import "@preview/cetz:0.4.1"
 #import "temp2.typ": *
 #set par(justify: true)
 
-#title("Assignment 3")
+#title("Assignment 3: Use Case Diagram")
 #let step(text) = [
   #box(stroke: 1pt, inset: 8pt, radius: 50pt)[
     #text
@@ -13,7 +13,7 @@
 ]
 
 #let entity(text) = [
-  #box(stroke: 1pt, inset: 8pt, radius: 8pt, fill: blue.lighten(70%))[ 
+  #box(stroke: 1pt, inset: 8pt, radius: 8pt, fill: blue.lighten(70%))[
     #text
   ]
 ]
@@ -30,10 +30,10 @@
     line((0, -0.9), (0.3, -1.2))
   })
 
-  #entity(name)
+  #entity(smallcaps(name))
 ]
 
-#box(stroke: 1pt, width: 100%, inset: 20pt)[
+#box(stroke: 1pt, width: 100%, inset: 20pt, radius: 4pt)[
   #diagram(
     // entities
     node((-1, 0.7))[#stickman("Customer")],
@@ -73,7 +73,6 @@
     edge((6, 3), (4, 1)),
     edge((6, 3), (4, 2.8)),
     edge((6, 3), (4, 3.6)),
-    edge((6, 3), (4, 4.4))
-
+    edge((6, 3), (4, 4.4)),
   )
 ]
