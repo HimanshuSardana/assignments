@@ -1,7 +1,10 @@
 #import "temp2.typ": *
+#set par(justify: true)
 #title("Assignment 1")
 
-#question("Discuss the concept of Networking, advantages, disadvantages and applications.")
+#question(
+  "Discuss the concept of Networking, advantages, disadvantages and applications.",
+)
 #solution()[
   Networking is the practice of connecting computers and other devices to share resources and information. It allows for communication between devices, enabling data transfer, resource sharing, and collaboration.
 
@@ -49,10 +52,15 @@
 
 #question("Differentiate between physical and logical topologies.")
 #solution()[
-  #table(columns: (1fr, 1fr))[*Physical Topology*][*Logical Topology*][Actual physical layout of devices (cables, switches, routers)][Data flow pattern in the network][Defines how devices are connected in space][Defines how devices communicate][Examples: Star, Bus, Ring, Mesh][Examples: Logical Bus, Logical Ring][Fixed by hardware setup][Can change without altering hardware]
+  #table(columns: (
+      1fr,
+      1fr,
+    ))[*Physical Topology*][*Logical Topology*][Actual physical layout of devices (cables, switches, routers)][Data flow pattern in the network][Defines how devices are connected in space][Defines how devices communicate][Examples: Star, Bus, Ring, Mesh][Examples: Logical Bus, Logical Ring][Fixed by hardware setup][Can change without altering hardware]
 ]
 
-#question("List the different types of networks from surroundings as client-server network, distributed networks, peer-to-peer networks and cloud based networks.")
+#question(
+  "List the different types of networks from surroundings as client-server network, distributed networks, peer-to-peer networks and cloud based networks.",
+)
 #solution()[
   - *Client-Server Network*: A network architecture where clients (devices requesting services) connect to a central server (providing services). The server manages resources and provides data to clients.
   - *Distributed Network*: A network where processing and data storage are distributed across multiple devices rather than being centralized. This enhances reliability and performance.

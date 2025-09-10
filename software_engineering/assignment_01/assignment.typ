@@ -1,5 +1,5 @@
 #set page(margin: (y: 50pt))
-#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 #import "temp2.typ": *
 #set par(justify: true)
 

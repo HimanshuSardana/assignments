@@ -18,27 +18,27 @@
 
 #solution()[
   #align(center)[
-    #image("a1a.png", width: 70%) 
+    #image("a1a.png", width: 70%)
   ]
 
   *Ping Results* (from 192.168.1.1)
-      ```txt
-      C:>ping 192.168.1.2
-      Pinging 192.168.1.2 with 32 bytes of data:
+  ```txt
+  C:>ping 192.168.1.2
+  Pinging 192.168.1.2 with 32 bytes of data:
 
-      Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
-      Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
-      Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
-      Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
+  Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
 
-      Ping statistics for 192.168.1.2:
-      Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
-      Approximate round trip times in milli-seconds:
-      Minimum = 0ms, Maximum = 0ms, Average = 0ms
-      ```
-  
+  Ping statistics for 192.168.1.2:
+  Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+  Approximate round trip times in milli-seconds:
+  Minimum = 0ms, Maximum = 0ms, Average = 0ms
+  ```
+
   #align(center)[
-    #image("a1b.png", width: 70%) 
+    #image("a1b.png", width: 70%)
   ]
 
   *Ping Results* (from 192.168.1.1)
@@ -67,14 +67,19 @@
 
 #solution()[
   #align(center + horizon)[
-    #box(fill: orange.lighten(70%), inset: 10pt, radius: 4pt, stroke: 1pt + orange)[
+    #box(
+      fill: orange.lighten(70%),
+      inset: 10pt,
+      radius: 4pt,
+      stroke: 1pt + orange,
+    )[
       #align(center)[
         Invalid question \
         Loop nhi bnta \
       ]
     ]
   ]
-  ]
+]
 
 #question()[
   Create the following Ring Topology

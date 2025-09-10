@@ -1,19 +1,12 @@
-# Create a list named MyList having title “My First List” and criteria having following
-# items:
-# a. Age vector a = (12, 14,16, 20)
-# b. A two dimensional matrix with 5 rows.
-# c. A score vector with values s = (‘First’, ‘Second’, ‘Third’)
-# Print MyList, criteria, and vector a
+patient_ids <- seq(1, 4)
+adm_dates <- c("10/15/2009", "11/1/2009", "10/21/2009", "10/28/2009")
+ages <- c(25, 34, 28, 52)
+diabetes <- c("Type1", "Type2", "Type1", "Type1")
+status <- c("Poor", "Improved", "Excellent", "Poor")
 
-myList <- list(
-  title = "My First List",
-  criteria = list(
-    age_vector = c(12, 14, 16, 20),
-    matrix_2d = matrix(1:10, nrow = 5),
-    score_vector = c('First', 'Second', 'Third')
-  )
-)
-
-print(myList)
-print(myList$criteria)
-print(myList$criteria$age_vector)
+df <- data.frame(patient_id = patient_ids,
+		 adm_date = as.Date(adm_dates, format="%m/%d/%Y"),
+		 age = ages,
+		 diabetes = diabetes,
+		 status = status)
+print(df)

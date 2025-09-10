@@ -144,7 +144,7 @@ head(report)
 )
 
 #solution()[```r
-select(data, job, date, category, guest_name)
+select(data, -year)
 ```]
 #output()[```txt
        job                           date  category   guest_name
@@ -420,9 +420,10 @@ arrange(data, date)
   [Add one column to the database with the name “Experience”. (Help: mutate() function in dplyr)],
 )
 
-//  the r pipe operator, written as %>%, is used to pass the output of one function directly as
-//  the input to the next function, making code more readable and concise.
-//  it is commonly used in the tidyverse ecosystem (e.g., dplyr, tidyr).
+//  the r pipe operator, written as %>%, is used to pass the output of one
+//  function directly as the input to the next function, making code more
+//  readable and concise. it is commonly used in the tidyverse ecosystem (e.g.,
+//  dplyr, tidyr).
 //  Eg: data_2 <- data %>% rename(yEaR=year)
 
 #solution()[```r
