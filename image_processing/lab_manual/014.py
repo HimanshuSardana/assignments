@@ -18,7 +18,7 @@ sobel_img = cv2.magnitude(sobel_x, sobel_y)
 canny_img = cv2.Canny(gray_img, 100, 200)
 
 # Unsharp masking
-blurred_img = cv2.GaussianBlur(gray_img, (5, 5), 0)
+blurred_img = cv2.GaussianBlur(gray_img, (5, 5), 3)
 unsharp_img = cv2.addWeighted(gray_img, 1.5, blurred_img, -0.5, 0)
 unsharp_img = np.clip(unsharp_img, 0, 255).astype(np.uint8)
 
@@ -40,4 +40,9 @@ plt.axis("off")
 plt.subplot(2, 2, 4)
 plt.title("Canny Edge Detection")
 plt.imshow(canny_img, cmap="gray")
+plt.axis("off")
+
+plt.subplot(2, 2, 5)
+plt.title("Unsharp Masking")
+plt.imshow(unsharp_img, cmap="gray")
 plt.axis("off")

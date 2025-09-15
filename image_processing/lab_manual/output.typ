@@ -47,7 +47,6 @@
   ]
 ]
 
-
 #let solution(content) = [
   #block(
     inset: 12pt,
@@ -78,6 +77,7 @@
     #text(size: 10pt)[#content]
   ]
 ]
+
 #align(center + horizon)[
   #set text(font: "Montserrat")
   #text(weight: "extrabold", size: 24pt)[
@@ -103,11 +103,17 @@
 ]
 
 #pagebreak()
+
 #outline()
 #pagebreak()
 
 
-#question("1", [WAP to convert grayscale images to binary images])
+#question("1", [
+  Write a program to convert grayscale images to binary images
+  + Assume mean intensity as threshold value.
+  + Input the threshold value from user.
+
+])
 
 #solution()[```python
 import numpy as np
@@ -159,7 +165,11 @@ plt.axis('off')
   ```
 ]
 #align(center)[#image("images/cell_2.png", width: 80%)]
-#question("2", [WAP to convert rgb image to grayscale])
+#question("2", [
+  Write a program to convert RGB image to grayscale
+  + By taking mean average of three planes
+  + Input the weightage of three planes i.e R, G, B from the user. The weightage is a value between 0 and 1, and sum of all three weightages is equal to 1.
+])
 
 #solution()[```python
 import numpy as np
@@ -222,7 +232,11 @@ plt.axis('off')
 #align(center)[#image("images/cell_4.png", width: 80%)]
 #question(
   "3",
-  [WAP to draw a border around the input image, input the width (in terms of pixel count) and the desired color of the border from the user. Try this with a binary and grayscale image.],
+  [
+    Write a program to draw a border around the input image (or in other words pad the input image)
+    + Input the width (in terms of pixel count) and the desired color of the border from the user.
+    + Try this for both grayscale and binary images
+  ],
 )
 
 #solution()[```python
@@ -230,7 +244,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 
-# WAP to draw a border around the input image, input the width (in terms of pixel count) and the desired color of the border from the user.
+# Write a program to draw a border around the input image, input the width (in terms of pixel count) and the desired color of the border from the user.
 img = cv2.imread("./gray_original.png", cv2.IMREAD_GRAYSCALE)
 border_width = int(input("Enter border width (in pixels): "))
 border_color = int(input("Enter border color (0-255): "))
@@ -274,8 +288,8 @@ plt.show()
 #align(center)[#image("images/cell_5.png", width: 80%)]
 #align(center)[#image("images/cell_6.png", width: 80%)]
 #question(
-  "5",
-  [WAP for image complement (try with both, a grayscale and a binary image)],
+  "4",
+  [Write a program for image complement (try with both, a grayscale and a binary image)],
 )
 
 #solution()[```python
@@ -315,8 +329,8 @@ plt.axis('off')
 ]
 #align(center)[#image("images/cell_7.png", width: 80%)]
 #question(
-  "6",
-  [WAP to enhance the input image using log transform (assume c = 1)],
+  "5",
+  [Write a program to enhance the input image using log transform (assume c = 1)],
 )
 
 #solution()[```python
@@ -347,7 +361,8 @@ plt.show()
   ```
 ]
 #align(center)[#image("images/cell_8.png", width: 80%)]
-Quesion 8: WAP to enhance image using power law/ gamma transformation
+#question("6", [
+  Write a program to enhance image using power law/ gamma transformation])
 
 #solution()[```python
 import numpy as np
@@ -380,8 +395,8 @@ plt.axis("off")
 ]
 #align(center)[#image("images/cell_9.png", width: 80%)]
 #question(
-  "9",
-  [WAP to enhance the input image using Intensity Level Slicing (Contrast Stretching)],
+  "7",
+  [Write a program to enhance the input image using Intensity Level Slicing (Contrast Stretching)],
 )
 
 #solution()[```python
@@ -415,7 +430,10 @@ plt.axis("off")
   ```
 ]
 #align(center)[#image("images/cell_10.png", width: 80%)]
-#question("10", [WAP to enhance the input image using histogram equalization])
+#question(
+  "8",
+  [Write a program to enhance the input image using histogram equalization],
+)
 
 #solution()[```python
 import cv2
@@ -443,8 +461,8 @@ plt.axis("off")
 ]
 #align(center)[#image("images/cell_11.png", width: 80%)]
 #question(
-  "11",
-  [WAP to match the histogram of the input image with that of reference image using histogram matching technique],
+  "9",
+  [Write a program to match the histogram of the input image with that of reference image using histogram matching technique],
 )
 
 #solution()[```python
@@ -503,8 +521,13 @@ plt.axis("off")
 ]
 #align(center)[#image("images/cell_12.png", width: 80%)]
 #question(
-  "12",
-  [WAP to smooth the image using Averaging filter (un-weighted), Weighted filter given by h(x, y) - max(|x|, |y|), gaussian filter],
+  "10",
+  [
+    Write a program to smooth the image using:
+    + Averaging filter (un-weighted)
+    + Weighted filter given by $h(x, y) = max(|x|, |y|)$
+    + Gaussian filter
+  ],
 )
 
 #solution()[```python
@@ -555,8 +578,15 @@ plt.axis("off")
 ]
 #align(center)[#image("images/cell_13.png", width: 80%)]
 #question(
-  "13",
-  [WAP to sharpen the input image using Laplacian filter, Gradient operators (Sobel, Canny), Unsharp masking],
+  "11",
+  [
+    Write a program to sharpen the input image using:
+    + Laplacian filter
+    + Gradient operators of Sobel and Canny edge detector
+    + Unsharp masking \
+    #v(1mm)
+    To obtain blurred image, use the Gaussian filter of size 5x5 and sigma = 5.
+  ],
 )
 
 #solution()[```python
@@ -578,34 +608,37 @@ sobel_img = cv2.magnitude(sobel_x, sobel_y)
 canny_img = cv2.Canny(gray_img, 100, 200)
 
 # Unsharp masking
-blurred_img = cv2.GaussianBlur(gray_img, (5, 5), 0)
+blurred_img = cv2.GaussianBlur(gray_img, (5, 5), 3)
 unsharp_img = cv2.addWeighted(gray_img, 1.5, blurred_img, -0.5, 0)
 unsharp_img = np.clip(unsharp_img, 0, 255).astype(np.uint8)
 
-plt.subplot(2, 2, 1)
+plt.subplot(2, 3, 1)
 plt.title("Original Image")
 plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.axis("off")
 
-plt.subplot(2, 2, 2)
+plt.subplot(2, 3, 2)
 plt.title("Laplacian Filter")
 plt.imshow(laplacian_img, cmap="gray")
 plt.axis("off")
 
-plt.subplot(2, 2, 3)
+plt.subplot(2, 3, 3)
 plt.title("Sobel Operator")
 plt.imshow(sobel_img, cmap="gray")
 plt.axis("off")
 
-plt.subplot(2, 2, 4)
+plt.subplot(2, 3, 4)
 plt.title("Canny Edge Detection")
 plt.imshow(canny_img, cmap="gray")
 plt.axis("off")
-```]
 
+plt.subplot(2, 3, 5)
+plt.title("Unsharp Masking")
+plt.imshow(unsharp_img, cmap="gray")
+plt.axis("off")
+```]
 #output()[```txt
-  (np.float64(-0.5), np.float64(899.5), np.float64(599.5), np.float64(-0.5))<Figure size 640x480 with 4 Axes>
+  (np.float64(-0.5), np.float64(899.5), np.float64(599.5), np.float64(-0.5))<Figure size 640x480 with 5 Axes>
   ```
 ]
 #align(center)[#image("images/cell_14.png", width: 80%)]
-
