@@ -7,13 +7,16 @@ img = cv2.imread("./rgb_original.jpg")
 
 # Averaging filter
 kernel_size = 5
-averaging_kernel = np.ones((kernel_size, kernel_size), np.float32) / (
-    kernel_size * kernel_size
-)
+averaging_kernel = np.ones((kernel_size, kernel_size), np.float32) / (kernel_size**2)
 averaged_img = cv2.filter2D(img, -1, averaging_kernel)
 
-# TODO: Weighted filter given by h(x, y) = max(|x|, |y|)
-weighted_kernel = np.array([[1, 2, 1], [2, 4, 2], [1, 2, 1]], np.float32) / 16
+weighted_kernel = np.zeros((kernel_size, kernel_size), dtype=np.float32)
+for i in range(kernel_size):
+    for j in range(kernel_size):
+        weighted_kernel[i, j] = max(
+            abs(i - kernel_size // 2), abs(j - kernel_size // 2)
+        )
+weighted_kernel /= np.sum(weighted_kernel)
 weighted_img = cv2.filter2D(img, -1, weighted_kernel)
 
 # Gaussian filter
