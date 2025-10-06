@@ -20,28 +20,27 @@ folds = KFold(n_splits=5, shuffle=True, random_state=42)
 
 best_r2 = -np.inf
 
-for i in range(5):
-    for train_index, test_index in folds.split(X_scaled):
-        X_train, X_test = X_scaled[train_index], X_scaled[test_index]
-        y_train, y_test = y[train_index], y[test_index]
+for i, (train_index, test_index) in enumerate(folds.split(X_scaled)):
+    X_train, X_test = X_scaled[train_index], X_scaled[test_index]
+    y_train, y_test = y[train_index], y[test_index]
 
-        X_train_b = np.c_[np.ones((X_train.shape[0], 1)), X_train]
-        X_test_b = np.c_[np.ones((X_test.shape[0], 1)), X_test]
+    X_train_b = np.c_[np.ones((X_train.shape[0], 1)), X_train]
+    X_test_b = np.c_[np.ones((X_test.shape[0], 1)), X_test]
 
-        beta = np.linalg.inv(X_train_b.T.dot(X_train_b)).dot(X_train_b.T).dot(y_train)
-        y_pred = X_test_b.dot(beta)
+    beta = np.linalg.inv(X_train_b.T.dot(X_train_b)).dot(X_train_b.T).dot(y_train)
+    y_pred = X_test_b.dot(beta)
 
-        ss_total = np.sum((y_test - np.mean(y_test)) ** 2)
-        ss_residual = np.sum((y_test - y_pred) ** 2)
-        r2_score = 1 - (ss_residual / ss_total)
+    ss_total = np.sum((y_test - np.mean(y_test)) ** 2)
+    ss_residual = np.sum((y_test - y_pred) ** 2)
+    r2_score = 1 - (ss_residual / ss_total)
 
-        if r2_score > best_r2:
-            best_r2 = r2_score
-            best_beta = beta
+    if r2_score > best_r2:
+        best_r2 = r2_score
+        best_beta = beta
 
-        print(f'Iteration {i+1}:')
-        print(f'Beta coefficients: {beta}')
-        print(f'R2 Score: {r2_score}\n')
+    print(f'Iteration {i+1}:')
+    print(f'Beta coefficients: {beta}')
+    print(f'R2 Score: {r2_score}\n')
 
 print(f'Best R2 Score: {best_r2}')
 print(f'Best Beta coefficients: {best_beta}')
