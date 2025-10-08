@@ -290,6 +290,32 @@ print(high_life_exp)
   What 10 countries have the strongest correlation (in either direction) between life expectancy and per capita GDP?
 ]
 
+#solution()[
+  ```python
+  df <- mutate(df, gdpCorr = cor(gdpPerc, lifeExp))
+  df <- group_by(df, country) %>%
+        arrange(desc(abs(gdpCorr))) %>%
+        slice(1)
+  print(tail(df, 10))
+  ```
+]
+
+#output()[
+  ```txt
+     country      continent      year lifeExp        pop gdpPerc gdpCorr
+   1 Portugal     Europe         2014    79.6 1106468148   34667   0.112
+   2 Russia       Europe         2013    82.5  203307819   21899   0.112
+   3 South Africa Africa         2011    74.1  642006400   23944   0.112
+   4 South Korea  Asia           2007    79.8  298705609   43262   0.112
+   5 Spain        Europe         2000    84.1  856771125   49578   0.112
+   6 Sweden       Europe         2004    78.4  384053295   41039   0.112
+   7 Thailand     Asia           2009    66.9  229008478   20186   0.112
+   8 UK           Europe         2008    66.1  909143577   51218   0.112
+   9 USA          North America  2002    64.5  882120679   36360   0.112
+  10 Vietnam      Asia           2011    72.3   58478689   17796   0.112
+  ```
+]
+
 #question("1. (g)")[
   Which combinations of continent (besides Asia) and year have the highest average population across all countries?
 ]
