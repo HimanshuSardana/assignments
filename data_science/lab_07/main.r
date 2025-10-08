@@ -101,6 +101,7 @@ head(data, 4)
 
 # Question 2. (c): Find the coorelation between Quantity_in_stock and Exp_date.
 data$Exp_date_numeric <- as.numeric(data$Exp_date)
+data <- na.omit(data)
 correlation <- cor(data$Quantity_in_stock, data$Exp_date_numeric)
 
 # Question 2. (d): Plot the bar graph for the Sales with year of manufacturing.
@@ -109,3 +110,24 @@ ggplot(data, aes(x = factor(Manf_year), y = Sales)) +
   geom_bar(stat = "identity", fill = "blue") +
   labs(title = "Sales by Year of Manufacturing", x = "Year of Manufacturing", y = "Sales")
 # Question 2. (e): Find the company having more than one type of medicine.
+company_medicine <- aggregate(Med_Name ~ Company, data = data, FUN = function(x) length(unique(x)))
+
+Question 2. (f): Find the type of Medicine available.
+medicine_types <- unique(data$Med_Name)
+print(medicine_types)
+
+# Question 2. (g): Which medicines are expiring? Show by box plots.
+expiring_medicines <- data[data$Exp_date < Sys.Date(), ]
+ggplot(expiring_medicines, aes(x = Med_Name, y = Exp_date)) +
+  geom_boxplot(fill = "orange") +
+  labs(title = "Expiring Medicines", x = "Medicine Name", y = "Expiration Date")
+
+# Question 2. (h): Find the average stock in the store.
+average_stock <- mean(data$Quantity_in_stock)
+average_stock_per_med <- aggregate(Quantity_in_stock ~ Med_Name, data = data, FUN = mean)
+
+# Question 2. (i): Draw the regression line between Manufacturing year and Sales.
+ggplot(data, aes(x = Manf_year, y = Sales)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "Regression Line between Manufacturing Year and Sales", x = "Manufacturing Year", y = "Sales")

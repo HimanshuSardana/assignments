@@ -82,14 +82,20 @@
 #title("Assignment 6")
 #question(
   "1",
-  [Create the following data set with 20 different years and perform the following operations using `dplyr` library.],
+  [Create the following data set with 20 different years and perform the following operations using „dplyr‟ library.],
 )
 
 #solution()[```python
 # Question 1: Create the following data set with 20 different years and perform the following operations using „dplyr‟ library.
 df <- data.frame(
-  country = rep(c("India", "USA", "China", "Brazil", "UK", "Germany", "France", "Italy", "Canada", "Australia", "Japan", "South Korea", "Mexico", "South Africa", "Russia", "Spain", "Netherlands", "Sweden", "Norway", "Denmark", "Finland", "Poland", "Portugal", "Argentina", "Chile", "Colombia", "New Zealand", "Thailand", "Vietnam", "Philippines"), each = 2),
-  continent = rep(c("Asia", "North America", "Asia", "South America", "Europe", "Europe", "Europe", "Europe", "North America", "Oceania", "Asia", "Asia", "North America", "Africa", "Europe", "Europe", "Europe", "Europe", "Europe", "Europe", "Europe", "Europe", "Europe", "South America", "South America", "South America", "Oceania", "Asia", "Asia", "Asia"), each = 2),
+  country = rep(c("India", "USA", "China", "Brazil", "UK", "Germany", "France", "Italy", "Canada", "Australia",
+                  "Japan", "South Korea", "Mexico", "South Africa", "Russia",
+                  "Spain", "Netherlands", "Sweden", "Norway", "Denmark", "Finland", "Poland", "Portugal",
+                  "Argentina", "Chile", "Colombia", "New Zealand", "Thailand", "Vietnam", "Philippines"), each = 2),
+  continent = rep(c("Asia", "North America", "Asia", "South America", "Europe", "Europe", "Europe", "Europe", "North America", "Oceania",
+                    "Asia", "Asia", "North America", "Africa", "Europe",
+                    "Europe", "Europe", "Europe", "Europe", "Europe", "Europe", "Europe", "Europe",
+                    "South America", "South America", "South America", "Oceania", "Asia", "Asia", "Asia"), each = 2),
   year = rep(2000:2014, times = 2),
   lifeExp = runif(60, 60, 85),
   pop = sample(1e6:1.4e9, 60, replace = TRUE),
@@ -99,14 +105,14 @@ df <- data.frame(
 print(summary(df))
 ```]
 #output()[```txt
-          country           continent            year           lifeExp
+  country           continent              year         lifeExp
    Length:60          Length:60          Min.   :2000   Min.   :60.26
    Class :character   Class :character   1st Qu.:2003   1st Qu.:68.36
    Mode  :character   Mode  :character   Median :2007   Median :72.52
                                          Mean   :2007   Mean   :73.13
                                          3rd Qu.:2011   3rd Qu.:78.68
                                          Max.   :2014   Max.   :84.47
-           pop                 gdpPerc
+        pop               gdpPerc
    Min.   :8.012e+06   Min.   : 4276
    1st Qu.:2.126e+08   1st Qu.:14291
    Median :6.008e+08   Median :26167
@@ -115,34 +121,32 @@ print(summary(df))
    Max.   :1.313e+09   Max.   :58945
   ```
 ]
-#question("1. (a)", [How many unique countries per continent.])
+#question("1. (a)")[
+  How many unique countries per continent.
+]
 
 #solution()[```python
 library(dplyr)
-unique_countries <- select(df, country, continent) %>%
-  distinct() %>%
-  group_by(continent) %>%
-  summarise(unique_countries = n())
 
-print(unique_countries)
+unique_countries <- select(df, country, continent)
+unique_countries <- unique(unique_countries)
+
+print(count(group_by(unique_countries, continent)))
 ```]
 #output()[```txt
-  # A tibble: 6 × 2
-    continent     unique_countries
-    <chr>                    <int>
-  1 Africa                       1
-  2 Asia                         7
-  3 Europe                      13
-  4 North America                3
-  5 Oceania                      2
-  6 South America                4
+  A tibble: 6 × 2
+  continent     unique_countries
+  Africa                       1
+  Asia                         7
+  Europe                      13
+  North America                3
+  Oceania                      2
+  South America                4
   ```
 ]
-#question(
-  "1. (b)",
-  [Which European nation had the lowest GDP per capita in a given year?],
-)
-
+#question("1. (b)")[
+  Which European nation had the lowest GDP per capita in a given year?
+]
 #solution()[```python
 lowest_gdp_europe <- df %>%
   filter(continent == "Europe") %>%
@@ -154,31 +158,30 @@ lowest_gdp_europe <- df %>%
 print(lowest_gdp_europe)
 ```]
 #output()[```txt
-  # A tibble: 15 × 3
-  # Groups:   year [15]
-     country      year gdpPerc
-     <chr>       <int>   <int>
-   1 Spain        2000   25395
-   2 Spain        2001   41012
-   3 Netherlands  2002   53617
-   4 Netherlands  2003   10773
-   5 Sweden       2004   19775
-   6 Sweden       2005   49475
-   7 Norway       2006   30474
-   8 Norway       2007   31538
-   9 Denmark      2008    7364
-  10 UK           2009   21542
-  11 Germany      2010   36682
-  12 Finland      2011    8264
-  13 France       2012    4709
-  14 France       2013   16364
-  15 Italy        2014   17723
+  A tibble: 15 × 3
+  Groups:   year [15]
+  country      year gdpPerc
+   1 Spain        2000   [4m2[24m[4m5[24m395
+   2 Spain        2001   [4m4[24m[4m1[24m012
+   3 Netherlands  2002   [4m5[24m[4m3[24m617
+   4 Netherlands  2003   [4m1[24m[4m0[24m773
+   5 Sweden       2004   [4m1[24m[4m9[24m775
+   6 Sweden       2005   [4m4[24m[4m9[24m475
+   7 Norway       2006   [4m3[24m[4m0[24m474
+   8 Norway       2007   [4m3[24m[4m1[24m538
+   9 Denmark      2008    [4m7[24m364
+  10 UK           2009   [4m2[24m[4m1[24m542
+  11 Germany      2010   [4m3[24m[4m6[24m682
+  12 Finland      2011    [4m8[24m264
+  13 France       2012    [4m4[24m709
+  14 France       2013   [4m1[24m[4m6[24m364
+  15 Italy        2014   [4m1[24m[4m7[24m723
   ```
 ]
-#question(
-  "1. (c)",
-  [According to the data available, what was the average life expectancy across each continent in a given year?],
-)
+
+#question("1. (c)")[
+  According to the data available, what was the average life expectancy across each continent in a given year?
+]
 
 #solution()[```python
 avg_life_exp <- aggregate(lifeExp ~ continent + year, data = df, FUN = mean)
@@ -234,10 +237,9 @@ print(avg_life_exp)
   46        Europe 2014 75.84524
   ```
 ]
-#question(
-  "1. (d)",
-  [What 5 countries have the highest total GDP over all years combined?],
-)
+#question("1. (d)")[
+  What 5 countries have the highest total GDP over all years combined?
+]
 
 #solution()[```python
 gdp_df <- df %>%
@@ -257,10 +259,9 @@ print(top_5_countries)
   5 Netherlands 5.535939e+13
   ```
 ]
-#question(
-  "1. (e)",
-  [What countries and years had life expectancies of at least 80 years?],
-)
+#question("1. (e)")[
+  What countries and years had life expectancies of at least 80 years?
+]
 
 #solution()[```python
 high_life_exp <- df %>%
@@ -270,7 +271,7 @@ high_life_exp <- df %>%
 print(high_life_exp)
 ```]
 #output()[```txt
-  country year  lifeExp
+          country year  lifeExp
   1           USA 2003 80.13556
   2        Canada 2002 80.96746
   3         Japan 2005 84.46835
@@ -285,14 +286,18 @@ print(high_life_exp)
   12     Thailand 2009 83.46185
   ```
 ]
-#question(
-  "1. (f)",
-  [What 10 countries have the strongest correlation (in either direction) between life expectancy and per capita GDP?],
-)
+#question("1. (f)")[
+  What 10 countries have the strongest correlation (in either direction) between life expectancy and per capita GDP?
+]
+
+#question("1. (g)")[
+  Which combinations of continent (besides Asia) and year have the highest average population across all countries?
+]
+
 #solution()[```python
 mutate(gdp_df, corr = lifeExp/gdpPerc)
 top_10_corr <- aggregate(corr ~ country, data = gdp_df, FUN = function(x) cor(x, use = "complete.obs")) %>%
-arrange(desc(abs(corr))) %>%
+  arrange(desc(abs(corr))) %>%
 
 print(head(top_10_corr, 10))
 ```]
@@ -358,7 +363,7 @@ print(head(top_10_corr, 10))
   58 Vietnam      Asia          2012 70.27315  499926939 30748   1.537175e+13
   59 Philippines  Asia          2013 76.18017   29784803 45594   1.358008e+12
   60 Philippines  Asia          2014 70.65546  847957709  4276   3.625867e+12
-  corr
+     corr
   1  0.001469177
   2  0.003741804
   3  0.001207231
@@ -421,16 +426,9 @@ print(head(top_10_corr, 10))
   60 0.016523728
   ```
 ]
-
-#question(
-  "1. (g)",
-  [Which combinations of continent (besides Asia) and year have the highest average population across all countries?],
-)
-
-#question(
-  "1. (h)",
-  [Which three countries have had the most consistent population estimates (i.e. lowest standard deviation) across the years of available data? ],
-)
+#question("1. (h)")[
+  Which three countries have had the most consistent population estimates (i.e. lowest standard deviation) across the years of available data?
+]
 
 #solution()[```python
 consistent_pop <- aggregate(pop ~ country, data = df, FUN = sd) %>%
@@ -446,10 +444,9 @@ print(consistent_pop)
   3   Chile 47763095
   ```
 ]
-#question(
-  "1. (i)",
-  [Excluding records from a given year, which observations indicate that the population of a country has decreased from the previous year and the life expectancy has increased?],
-)
+#question("1. (i)")[
+  Excluding records from a given year, which observations indicate that the population of a country has decreased from the previous year and the life expectancy has increased?
+]
 
 #solution()[```python
 pop_life_change <- df %>%
@@ -462,7 +459,7 @@ pop_life_change <- df %>%
 print(pop_life_change)
 ```]
 #output()[```txt
-      country    year        pop  lifeExp
+  country year        pop  lifeExp
   1       Brazil 2007  712399179 70.18291
   2       Canada 2001  208869615 77.48323
   3        Chile 2004  727250123 76.44950
@@ -504,58 +501,169 @@ write.csv("DataSet.csv", row.names=FALSE)
 ```]
 #output()[```txt
   medid med_name company manf_year   exp_date quantity_in_stock sales
-      1       1     meda    comp1      2018 2023-12-31               100  5000
-      2       2     medb    comp2      2019 2024-06-30               150  7000
-      3       3     medc    comp1      2018 2023-11-30               200  6000
-      4       4     medd    comp3      2020 2025-01-31               120  8000
-      5       5     mede   comp2      2019 2024-05-31               180  7500
-      6       6     medf   comp4      2021 2026-12-31               160  9000
-      7       7     medg   comp3      2020 2025-03-31               140  8500
-      8       8     medh   comp1      2018 2023-10-31               130  6500
-      9       9     medi   comp4      2021 2026-11-30               170  9500
-      10     10     medj   comp2      2019 2024-07-31               110  7200
-    "x"
-    "DataSet.csv"
+  1      1     meda   comp1      2018 2023-12-31               100  5000
+  2      2     medb   comp2      2019 2024-06-30               150  7000
+  3      3     medc   comp1      2018 2023-11-30               200  6000
+  4      4     medd   comp3      2020 2025-01-31               120  8000
+  5      5     mede   comp2      2019 2024-05-31               180  7500
+  6      6     medf   comp4      2021 2026-12-31               160  9000
+  7      7     medg   comp3      2020 2025-03-31               140  8500
+  8      8     medh   comp1      2018 2023-10-31               130  6500
+  9      9     medi   comp4      2021 2026-11-30               170  9500
+  10    10     medj   comp2      2019 2024-07-31               110  7200
+  "x"
+  "DataSet.csv"
   ```
 ]
-Question 2. (a): Read the data file and show the first 4 record of the file.
+#question("2. (a)")[
+  Read the data file and show the first 4 record of the file.
+]
 
 #solution()[```python
 data <- read.csv("DataSet.csv")
 print(head(data, 4))
 ```]
 #output()[```txt
-  MedID	Med_Name	Company	Manf_year	Exp_date	Quantity_in_stock	Sales
-  1	1	MedA	Comp1	2018	2023-12-31	100	5000
-  2	2	MedB	Comp2	2019	2024-06-30	150	7000
-  3	3	MedC	Comp1	2018	2023-11-30	200	6000
-  4	4	MedD	Comp3	2020	2025-01-31	120	8000
+  MedID Med_Name Company Manf_year   Exp_date Quantity_in_stock Sales
+  1     1     MedA   Comp1      2018 2023-12-31               100  5000
+  2     2     MedB   Comp2      2019 2024-06-30               150  7000
+  3     3     MedC   Comp1      2018 2023-11-30               200  6000
+  4     4     MedD   Comp3      2020 2025-01-31               120  8000
   ```
 ]
-Question 2. (b): Read the data file and show the last 4 record of the file.
+#question("2. (b)")[
+  Read the data file and show the last 4 record of the file.
+]
 
 #solution()[```python
-print(tail(df, 4))
+print(tail(data, 4))
 ```]
 #output()[```txt
-  medid med_name company manf_year   exp_date quantity_in_stock sales
-  7      7     medg   comp3      2020 2025-03-31               140  8500
-  8      8     medh   comp1      2018 2023-10-31               130  6500
-  9      9     medi   comp4      2021 2026-11-30               170  9500
-  10    10     medj   comp2      2019 2024-07-31               110  7200
+  MedID Med_Name Company Manf_year   Exp_date Quantity_in_stock Sales
+  7      7     MedG   Comp3      2020 2025-03-31               140  8500
+  8      8     MedH   Comp1      2018 2023-10-31               130  6500
+  9      9     MedI   Comp4      2021 2026-11-30               170  9500
+  10    10     MedJ   Comp2      2019 2024-07-31               110  7200
   ```
 ]
-Question 2. (c): Find the coorelation between Quantity_in_stock and Exp_date.
+
+#question("2. (c)")[
+  Find the coorelation between Quantity_in_stock and Exp_date.
+]
 
 #solution()[```python
-data$Exp_date_numeric <- (data$Exp_date)
-correlation <- cor(data$Quantity_in_stock, data$Exp_date_numeric)
-
+data$Exp_date <- as.numeric(data$Exp_date)
+data <- na.omit(data)
+correlation <- cor(data$Quantity_in_stock, data$Exp_date)
 print(correlation)
 ```]
-Question 2. (d): Plot the bar graph for the Sales with year of manufacturing.
-Question 2. (e): Find the company having more than one type of medicine.
-Question 2. (f): Find the type of Medicine available.
-Question 2. (g): Which medicines are expiring? Show by box plots.
-Question 2. (h): Find the average stock in the store.
-Question 2. (i): Draw the regression line between Manufacturing year and Sales.
+#output()[```txt
+  [1] 0.2084504
+  ```
+]
+#question("2. (d)")[
+  Plot the bar graph for the Sales with year of manufacturing.
+]
+
+#solution()[```python
+library(ggplot2)
+ggplot(data, aes(x = Manf_year, y = Sales)) +
+geom_bar(stat = "identity", fill = "blue") +
+labs(
+  title = "Sales by Year of Manufacturing",
+  x = "Year of Manufacturing",
+  y = "Sales"
+)
+```]
+#output()[```txt
+  plot without title
+  ```
+]
+#align(center)[#image("images/cell_1.png", width: 80%)]
+
+#question("2. (e)")[
+  Find the company having more than one type of medicine.
+]
+
+#solution()[```python
+company_medicine <- aggregate(Med_Name ~ Company, data = data, FUN = function(x) length(unique(x)))
+print(company_medicine[company_medicine$Med_Name > 1, ])
+```]
+#output()[```txt
+  Company Med_Name
+  1   Comp1        3
+  2   Comp2        3
+  3   Comp3        2
+  4   Comp4        2
+  ```
+]
+
+#question("2. (f)")[
+  Find the type of Medicine available.
+]
+
+#solution()[```python
+medicine_types <- unique(data$Med_Name)
+print(medicine_types)
+```]
+#output()[```txt
+  [1] "MedA" "MedB" "MedC" "MedD" "MedE" "MedF" "MedG" "MedH" "MedI" "MedJ"
+  ```
+]
+#question("2. (g)")[
+  Which medicines are expiring? Show by box plots.
+]
+
+#solution()[```python
+expiring_medicines <- data[data$Exp_date < Sys.Date(), ]
+ggplot(expiring_medicines, aes(x = Med_Name, y = Exp_date)) +
+  geom_boxplot(fill = "orange") +
+  labs(title = "Expiring Medicines", x = "Medicine Name", y = "Expiration Date")
+```]
+#output()[```txt
+  plot without title
+  ```
+]
+#align(center)[#image("images/cell_2.png", width: 80%)]
+#question("2. (h)")[
+  Find the average stock in the store.
+]
+
+#solution()[```python
+average_stock <- mean(data$Quantity_in_stock)
+print(average_stock)
+
+average_stock_per_med <- aggregate(Quantity_in_stock ~ Med_Name, data = data, FUN = mean)
+print(average_stock_per_med)
+```]
+#output()[```txt
+  [1] 146
+     Med_Name Quantity_in_stock
+  1      MedA               100
+  2      MedB               150
+  3      MedC               200
+  4      MedD               120
+  5      MedE               180
+  6      MedF               160
+  7      MedG               140
+  8      MedH               130
+  9      MedI               170
+  10     MedJ               110
+  ```
+]
+#question("2. (i)")[
+  Draw the regression line between Manufacturing year and Sales.
+]
+
+#solution()[```python
+ggplot(data, aes(x = Manf_year, y = Sales)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "Regression Line between Manufacturing Year and Sales", x = "Manufacturing Year", y = "Sales")
+```]
+#output()[```txt
+  [1m[22m`geom_smooth()` using formula = 'y ~ x'
+  plot without title
+  ```
+]
+#align(center)[#image("images/cell_3.png", width: 80%)]
