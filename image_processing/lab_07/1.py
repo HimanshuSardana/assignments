@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 
-
 def uniform_noise(image, a=-50, b=50):
     noise = np.random.uniform(a, b, image.shape).astype(np.float32)
     noisy_image = cv2.add(image.astype(np.float32), noise)
