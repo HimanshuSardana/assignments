@@ -129,5 +129,5 @@ average_stock_per_med <- aggregate(Quantity_in_stock ~ Med_Name, data = data, FU
 # Question 2. (i): Draw the regression line between Manufacturing year and Sales.
 ggplot(data, aes(x = Manf_year, y = Sales)) +
   geom_point() +
-  geom_smooth(method = "lm") +
+  geom_smooth(method = "lm" ) +
   labs(title = "Regression Line between Manufacturing Year and Sales", x = "Manufacturing Year", y = "Sales")

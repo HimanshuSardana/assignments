@@ -21,7 +21,7 @@
 
 #let toc() = [
   #outline(title: [
-    #box(width: 100%, inset: (x: 8pt, y: 10pt), fill: orange, radius: 8pt)[
+    #box(width: 100%, inset: (x: 8pt, y: 10pt), fill: fuchsia, radius: 8pt)[
       #align(center)[
         #smallcaps()[#text(fill: white)[*Table of Contents*]]
       ]
@@ -34,8 +34,8 @@
     width: 100%,
     inset: 10pt,
     radius: 4pt,
-    fill: orange.lighten(70%),
-    stroke: 1pt + orange.darken(30%),
+    fill: fuchsia.lighten(70%),
+    stroke: 1pt + fuchsia.darken(30%),
   )[
     #align(center + horizon)[
       #smallcaps()[#text(size: 12pt, weight: "bold")[= #body]]
@@ -46,8 +46,8 @@
 #let question(title, body) = context [
   #showybox(
     frame: (
-      border-color: orange,
-      title-color: orange,
+      border-color: fuchsia,
+      title-color: fuchsia,
       body-color: white,
     ),
     title-style: (
@@ -60,7 +60,7 @@
     ),
     title: [
       #smallcaps()[#text(size: 10pt, weight: "bold")[
-        == #title
+        == Question #title
       ]]
     ],
   )[#body
@@ -70,8 +70,8 @@
 #let theory(title, body) = context [
   #showybox(
     frame: (
-      border-color: orange,
-      title-color: orange,
+      border-color: fuchsia,
+      title-color: fuchsia,
       body-color: white,
     ),
     title-style: (
