@@ -41,7 +41,7 @@
     ],
   )[
     #text(font: "Montserrat", size: 10pt)[
-      = #text(size: 10pt, weight: "regular")[#body]
+      #text(size: 10pt, weight: "regular")[#body]
     ]
     #v(1mm)
   ]
