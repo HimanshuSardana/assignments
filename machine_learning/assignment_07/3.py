@@ -19,7 +19,6 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-print("\n--- Training RidgeCV ---")
 
 alphas_to_test = [0.01, 0.1, 1.0, 10.0, 20.0, 50.0, 100.0]
 
