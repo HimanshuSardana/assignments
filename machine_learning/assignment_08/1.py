@@ -12,32 +12,17 @@ pd.options.mode.chained_assignment = None
 
 DATA_URL = "https://raw.githubusercontent.com/justmarkham/pycon-2016-tutorial/master/data/sms.tsv"
 
-try:
-    df = pd.read_csv(
-        DATA_URL, sep="\t", header=None, names=["label", "message"], encoding="latin-1"
-    )
-except Exception:
-    data = {
-        "label": ["ham", "spam", "ham", "spam"],
-        "message": [
-            "Go until jurong point",
-            "Free entry in 2 a wkly comp",
-            "Ok lar... Joking wif u oni",
-            "WINNER!! 500 free credit text NOW",
-        ],
-    }
-    df = pd.DataFrame(data)
+df = pd.read_csv(
+    DATA_URL, sep="\t", header=None, names=["label", "message"], encoding="latin-1"
+)
 
 df["label"] = df["label"].map({"ham": 0, "spam": 1})
 
-try:
-    stopwords_df = pd.read_csv(
-        "https://raw.githubusercontent.com/stopwords-iso/stopwords-en/master/stopwords-en.txt",
-        header=None,
-    )
-    stopwords = set(stopwords_df[0].values)
-except Exception:
-    stopwords = set()
+stopwords_df = pd.read_csv(
+    "https://raw.githubusercontent.com/stopwords-iso/stopwords-en/master/stopwords-en.txt",
+    header=None,
+)
+stopwords = set(stopwords_df[0].values)
 
 
 def preprocess_text(text):
@@ -61,23 +46,16 @@ vectorizer = TfidfVectorizer()
 X_train = vectorizer.fit_transform(X_train_text)
 X_test = vectorizer.transform(X_test_text)
 
-print("=" * 50)
-print("PART A: PREPROCESSING & FEATURE EXTRACTION COMPLETE")
-print(f"Train/Test Shapes: {X_train.shape} / {X_test.shape}")
-print("=" * 50)
-
 
 def evaluate_model(model, X_train, y_train, X_test, y_test, name):
     """Evaluates and prints performance metrics."""
     y_train_pred = model.predict(X_train)
     y_test_pred = model.predict(X_test)
 
-    # Metrics
     train_acc = accuracy_score(y_train, y_train_pred)
     test_acc = accuracy_score(y_test, y_test_pred)
     cm = confusion_matrix(y_test, y_test_pred)
 
-    print(f"\n--- {name.upper()} REPORT ---")
     print(f"Train Accuracy: {train_acc:.4f}")
     print(f"Test Accuracy:  {test_acc:.4f}")
     print("\nConfusion Matrix (Test Set):\n", cm)
@@ -102,7 +80,7 @@ alpha_history = []
 model_history = []
 
 for t in range(T):
-    print(f"\n--- ITERATION {t + 1} ---")
+    print(f"\n[Iteration {t + 1}]")
 
     h_t = DecisionTreeClassifier(max_depth=1, random_state=t)
     h_t.fit(X_train, y_train, sample_weight=D)

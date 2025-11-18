@@ -122,6 +122,7 @@ plt.ylabel("Test Accuracy")
 plt.legend()
 plt.grid(True, linestyle="--", alpha=0.6)
 plt.show()
+plt.savefig("adaboost_accuracy_vs_estimators.png")
 
 print("\nHyperparameter Search Results (Accuracy):")
 print(
@@ -152,17 +153,20 @@ plt.xlabel("Boosting Iteration (t)")
 plt.ylabel("Ensemble Training Error")
 plt.grid(True, linestyle="--", alpha=0.6)
 plt.show()
+plt.savefig("adaboost_ensemble_error_vs_iteration.png")
 
 final_weights = best_model.estimator_weights_
 
+estimator_weights = best_model.estimator_weights_
+
 plt.figure(figsize=(8, 5))
-plt.hist(best_model.sample_weights_, bins=50, color="darkorange", edgecolor="black")
-plt.title("Sample Weight Distribution after Final Boosting Stage")
-plt.xlabel("Sample Weight (D_i)")
-plt.ylabel("Number of Samples")
-plt.yscale("log")  # Use log scale because most weights are very small
-plt.grid(axis="y", linestyle="--", alpha=0.6)
+plt.plot(estimator_weights, marker="o")
+plt.title("Estimator Weights (alpha_t) Across Boosting Iterations")
+plt.xlabel("Iteration")
+plt.ylabel("Alpha (Estimator Weight)")
+plt.grid(True, linestyle="--", alpha=0.6)
 plt.show()
+plt.savefig("adaboost_estimator_weights.png")
 
 importance = best_model.feature_importances_
 
@@ -187,22 +191,8 @@ plt.title("Top 10 Feature Importance from AdaBoost Model")
 plt.ylabel("Relative Importance")
 plt.tight_layout()
 plt.show()
+plt.savefig("adaboost_feature_importance.png")
 
 top_5_features = feature_importance_df.head(5)
 print("\nTop 5 Most Important Features:")
 print(top_5_features)
-
-top_features_explanation = {
-    "thal": "Thallium Stress Test results are crucial, as perfusion defects ('thal' values) are direct indicators of reduced blood flow (ischemia) to heart muscle.",
-    "ca": "# of Major Vessels colored by fluoroscopy ('ca') directly relates to the severity and extent of coronary artery disease (CAD). More blocked vessels mean higher risk.",
-    "cp": "Chest Pain Type ('cp') is a key diagnostic indicator. Atypical or asymptomatic pain (non-anginal) is less concerning than typical angina, making the categories highly predictive.",
-    "oldpeak": "ST Depression ('oldpeak') measures the extent of myocardial ischemia during exercise. A larger depression indicates greater oxygen debt and is a strong predictor of CAD.",
-    "thalach": "Maximum Heart Rate Achieved ('thalach') is inverse: lower max heart rate for age often indicates disease, as the heart cannot properly respond to the stress test due to blockage or pump dysfunction.",
-}
-
-for _, row in top_5_features.iterrows():
-    base_feature = row["feature"].split("__")[-1].split("_")[0]
-    print(f"\nFeature: **{row['feature']}** (Base: {base_feature})")
-    print(
-        f"Explanation: {top_features_explanation.get(base_feature, 'Feature importance reflects strong empirical correlation with the outcome.')}"
-    )
