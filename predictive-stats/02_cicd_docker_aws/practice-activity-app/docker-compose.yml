@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  app:
+    image: vue-practice-activity-app
+    build: .
+    ports:
+      - "80:80"
