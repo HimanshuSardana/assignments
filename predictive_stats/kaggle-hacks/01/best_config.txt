@@ -1,0 +1,5 @@
+Feature selection k: 30
+Use PCA: False
+CV splits: 250
+KNN params: {'metric': 'cosine', 'n_neighbors': 19, 'weights': 'distance'}
+Best CV Accuracy: 0.2861

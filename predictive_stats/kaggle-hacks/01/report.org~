@@ -1,0 +1,10 @@
+#+TITLE: Kaggle Hack 1 Writeup 
+#+AUTHOR: Himanshu Sardana
+#+DATE: <2026-01-10 Sat>
+
+* Exploratory Data Analysis
+#+begin_src python
+print("Hello World")
+#+end_src
+
+#+RESULTS:

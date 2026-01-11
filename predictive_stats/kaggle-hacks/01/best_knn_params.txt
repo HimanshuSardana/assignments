@@ -1,0 +1,3 @@
+Best Parameters: {'metric': 'cosine', 'n_neighbors': 17, 'weights': 'distance'}
+Best CV Accuracy: 0.2854
+Best n_splits: 209
