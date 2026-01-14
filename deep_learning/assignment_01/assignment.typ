@@ -60,9 +60,10 @@ threshold = 1.5
 
 inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
 outputs = [0, 0, 0, 1]
+bias = 1.5
 
 
-weights = [0.4, 0.6]
+weights = [0.5, 0.3]
 
 
 def activation(weighted_sum):
@@ -75,21 +76,23 @@ new_weights = weights
 # print(new_weights)
 
 for idx, input in enumerate(inputs):
-    weighted_sum = inputs[idx][0] * weights[0] + inputs[idx][1] * weights[1]
+    weighted_sum = inputs[idx][0] * weights[0] + inputs[idx][1] * weights[1] + bias
     if activation(weighted_sum) != outputs[idx]:
         # update weights
         for i in range(len(weights)):
             # print(i)
-            new_weights[i] = (
+            new_weights[i] += (
                 learning_rate
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
+
+            bias += learning_rate * (outputs[idx] - activation(weighted_sum)) * 1
     if new_weights != weights:
         weights = new_weights
         # new_weights = []
 
-    print(f"Epoch {idx}: {''.join(str(weights))}")
+    print(f"Epoch {idx}: {''.join(str(weights))}, \tnew bias: {bias}")
 ```
 
 #enum.item(2)[OR Gate]
@@ -104,9 +107,10 @@ threshold = 1.5
 
 inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
 outputs = [0, 1, 1, 1]
+bias = 1.5
 
 
-weights = [0.4, 0.6]
+weights = [0.5, 0.3]
 
 
 def activation(weighted_sum):
@@ -116,25 +120,24 @@ def activation(weighted_sum):
 
 
 new_weights = weights
-# print(new_weights)
 
 for idx, input in enumerate(inputs):
-    weighted_sum = inputs[idx][0] * weights[0] + inputs[idx][1] * weights[1]
+    weighted_sum = inputs[idx][0] * weights[0] + inputs[idx][1] * weights[1] + bias
     if activation(weighted_sum) != outputs[idx]:
-        # update weights
         for i in range(len(weights)):
-            # print(i)
-            new_weights[i] = (
+            new_weights[i] += (
                 learning_rate
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
+
+            bias += learning_rate * (outputs[idx] - activation(weighted_sum)) * 1
     if new_weights != weights:
         weights = new_weights
-        # new_weights = []
 
-    print(f"Epoch {idx}: {''.join(str(weights))}")
+    print(f"Epoch {idx}: {''.join(str(weights))}, \tnew bias: {bias}")
 ```
+
 #enum.item(3)[NAND Gate]
 #table(columns: 3)[*X*][*Y*][*Output*][0][0][1][0][1][1][1][0][1][1][1][0]
 ```python
@@ -147,9 +150,10 @@ threshold = 1.5
 
 inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
 outputs = [1, 1, 1, 0]
+bias = 1.5
 
 
-weights = [0.4, 0.6]
+weights = [0.5, 0.3]
 
 
 def activation(weighted_sum):
@@ -159,24 +163,22 @@ def activation(weighted_sum):
 
 
 new_weights = weights
-# print(new_weights)
 
 for idx, input in enumerate(inputs):
-    weighted_sum = inputs[idx][0] * weights[0] + inputs[idx][1] * weights[1]
+    weighted_sum = inputs[idx][0] * weights[0] + inputs[idx][1] * weights[1] + bias
     if activation(weighted_sum) != outputs[idx]:
-        # update weights
         for i in range(len(weights)):
-            # print(i)
-            new_weights[i] = (
+            new_weights[i] += (
                 learning_rate
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
+
+            bias += learning_rate * (outputs[idx] - activation(weighted_sum)) * 1
     if new_weights != weights:
         weights = new_weights
-        # new_weights = []
 
-    print(f"Epoch {idx}: {''.join(str(weights))}")
+    print(f"Epoch {idx}: {''.join(str(weights))}, \tnew bias: {bias}")
 ```
 
 #enum.item(4)[NOR Gate]
@@ -191,9 +193,10 @@ threshold = 1.5
 
 inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
 outputs = [1, 0, 0, 0]
+bias = 1.5
 
 
-weights = [0.4, 0.6]
+weights = [0.5, 0.3]
 
 
 def activation(weighted_sum):
@@ -203,22 +206,20 @@ def activation(weighted_sum):
 
 
 new_weights = weights
-# print(new_weights)
 
 for idx, input in enumerate(inputs):
-    weighted_sum = inputs[idx][0] * weights[0] + inputs[idx][1] * weights[1]
+    weighted_sum = inputs[idx][0] * weights[0] + inputs[idx][1] * weights[1] + bias
     if activation(weighted_sum) != outputs[idx]:
-        # update weights
         for i in range(len(weights)):
-            # print(i)
-            new_weights[i] = (
+            new_weights[i] += (
                 learning_rate
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
+
+            bias += learning_rate * (outputs[idx] - activation(weighted_sum)) * 1
     if new_weights != weights:
         weights = new_weights
-        # new_weights = []
 
-    print(f"Epoch {idx}: {''.join(str(weights))}")
+    print(f"Epoch {idx}: {''.join(str(weights))}, \tnew bias: {bias}")
 ```
