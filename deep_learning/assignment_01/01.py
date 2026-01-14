@@ -7,13 +7,14 @@ threshold = 1.5
 
 inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
 outputs = [0, 0, 0, 1]
+bias = 0.5
 
 
 weights = [0.4, 0.6]
 
 
 def activation(weighted_sum):
-    if weighted_sum < threshold:
+    if weighted_sum + bias < threshold:
         return f
     return t
 
@@ -32,7 +33,7 @@ for idx, input in enumerate(inputs):
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
-    if len(new_weights) > 0:
+    if new_weights != weights:
         weights = new_weights
         # new_weights = []
 

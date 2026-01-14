@@ -32,7 +32,7 @@ for idx, input in enumerate(inputs):
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
-    if len(new_weights) > 0:
+    if new_weights != weights:
         weights = new_weights
         # new_weights = []
 

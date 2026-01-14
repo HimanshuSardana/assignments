@@ -1,5 +1,4 @@
 #let assignment_no = state("assignment_no", 1);
-#outline()
 #show raw.where(block: true): it => [
   #set text(font: "Iosevka NF")
   #block(width: 100%, fill: gray.lighten(90%), inset: 8pt)[
@@ -86,7 +85,7 @@ for idx, input in enumerate(inputs):
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
-    if len(new_weights) > 0:
+    if new_weights != weights:
         weights = new_weights
         # new_weights = []
 
@@ -130,7 +129,7 @@ for idx, input in enumerate(inputs):
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
-    if len(new_weights) > 0:
+    if new_weights != weights:
         weights = new_weights
         # new_weights = []
 
@@ -173,7 +172,7 @@ for idx, input in enumerate(inputs):
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
-    if len(new_weights) > 0:
+    if new_weights != weights:
         weights = new_weights
         # new_weights = []
 
@@ -217,7 +216,7 @@ for idx, input in enumerate(inputs):
                 * (outputs[idx] - activation(weighted_sum))
                 * inputs[idx][i]
             )
-    if len(new_weights) > 0:
+    if new_weights != weights:
         weights = new_weights
         # new_weights = []
 
