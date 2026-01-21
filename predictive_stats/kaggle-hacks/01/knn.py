@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
 from sklearn.model_selection import StratifiedKFold, GridSearchCV
@@ -21,28 +22,28 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 X_test_scaled = scaler.transform(X_test)
 
-selector = SelectKBest(score_func=f_classif, k=50)
+selector = SelectKBest(score_func=f_classif, k=30)
 X_selected = selector.fit_transform(X_scaled, y)
 X_test_selected = selector.transform(X_test_scaled)
 
 print(f"Features reduced from {X.shape[1]} to {X_selected.shape[1]}")
 
-# pca = PCA(n_components=0.98, random_state=42)
-# X_pca = pca.fit_transform(X_selected)
-# X_test_pca = pca.transform(X_test_selected)
+pca = PCA(n_components=0.99, random_state=42)
+X_pca = pca.fit_transform(X_selected)
+X_test_pca = pca.transform(X_test_selected)
 
-X_pca = X_selected
-X_test_pca = X_test_selected
+# X_pca = X_selected
+# X_test_pca = X_test_selected
 
 print(f"PCA reduced to {X_pca.shape[1]} components")
 
 param_grid = {
     "n_neighbors": [1, 3, 5, 7, 9, 11, 15],
     "weights": ["distance"],
-    "metric": ["euclidean", "manhattan"],
+    "metric": ["cosine"],
 }
 
-kf = StratifiedKFold(n_splits=56, shuffle=True, random_state=42)
+kf = StratifiedKFold(n_splits=9, shuffle=True, random_state=42)
 
 knn_search = GridSearchCV(
     estimator=KNeighborsClassifier(n_jobs=-1),

@@ -41,10 +41,15 @@
 
 #question()[
   Design perceptrons for the following logic gates
-  + AND
-  + OR
-  + NAND
-  + NOR
+  #grid(columns: (auto, auto, auto, auto), gutter: 3mm)[
+    *1.* AND
+  ][
+    *2.* OR
+  ][
+    *3.* NAND
+  ][
+    *4.* NOR
+  ]
 ]
 
 #smallcaps()[*Solution*]
