@@ -75,12 +75,16 @@ class LogisticRegressionSinglePerceptronModel:
             self.error(h, y)
 
 
-SPNN = LogisticRegressionSinglePerceptronModel(
-    eta, inputLayer, outputLayer
-)  # Train SPNN for Linear Regression Model
+SPNN = LogisticRegressionSinglePerceptronModel(eta, inputLayer, outputLayer)
 SPNN.train(X, y)
 # SPNN.plot()
-pred = SPNN.predict(X)  # Generate classified output
-pred2 = SPNN.classify(X)  # Assess Model accuracy
-print("Minimum Error achieved:", min(SPNN.E))  # SPNN weights
-SPNN.w
+pred = SPNN.predict(X).flatten()
+pred2 = SPNN.classify(X)
+
+print(pred2)
+print("Minimum Error achieved:", min(SPNN.E))
+
+# predict for a new sample
+new_sample = np.array([[1.51761, 13.64, 3.49, 0.0]])
+new_pred = SPNN.classify(new_sample)
+print("Prediction for new sample:", new_pred.round())
