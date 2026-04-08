@@ -4,15 +4,17 @@ import numpy as np
 import io
 from flask_mail import Mail, Message
 from flask_cors import CORS
+import os
 
 app = flask.Flask(__name__)
 CORS(app)
 
+
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 465
 app.config["MAIL_USE_SSL"] = True
-app.config["MAIL_USERNAME"] = "hsardana_be23@thapar.edu"
-app.config["MAIL_PASSWORD"] = "wqompiilowgpabwz"
+app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME", "")
+app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD", "")
 app.config["MAIL_DEFAULT_SENDER"] = ("Himanshu Sardana", "hsardana_be23@thapar.edu")
 
 mail = Mail(app)
